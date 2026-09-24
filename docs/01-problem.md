@@ -1,4 +1,21 @@
-# Problem
+---
+doc_id: CVC-PRB-001
+title: CulvertCrawl problem statement
+project: CulvertCrawl
+doc_type: Problem statement
+version: "0.1"
+status: Draft
+date: '2026-09-24'
+author: Amish Chadha
+license: CERN-OHL-S-2.0
+revisions:
+- version: "0.1"
+  date: '2026-09-24'
+  author: Amish Chadha
+  change: Initial scaffold
+---
+
+# CulvertCrawl problem statement
 
 Small culverts and drains are hard to inspect without confined-space entry.
 
