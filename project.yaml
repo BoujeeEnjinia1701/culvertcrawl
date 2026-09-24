@@ -1,0 +1,17 @@
+# Card metadata consumed by https://amishchadha.com
+name: CulvertCrawl
+slug: culvertcrawl
+area: Situational Field Hardware
+status: concept          # concept | design | prototype | tested | released
+shortlisted: false
+pitch: >-
+  Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
+problem: >-
+  Small culverts and drains are hard to inspect without confined-space entry.
+budget_usd: 800
+difficulty: 4  # 1 easiest, 5 hardest
+hero_image: media/hero.png
+licenses:
+  hardware: CERN-OHL-S-2.0
+  software: MIT
+tags: [situational-field-hardware, open-hardware, cern-ohl-s]
