@@ -1,8 +1,14 @@
 item,qty,spec,supplier,unit_cost_usd,make_buy,notes
-Tracked chassis,,,,,,
-Gear motors (2),,,,,,
-Waterproof camera,,,,,,
-LED ring,,,,,,
-Line laser,,,,,,
-Tether reel,,,,,,
-Raspberry Pi,,,,,,
+1 Sealed hull and lid,1,"6061 aluminium box about 240 x 88 x 80 mm with 4 mm walls, O-ring sealed lid, IP68-rated cable glands and a pressure-test port",Local machine shop or online CNC service,70.00,make,Indicative price; IP68 to 1 m is a target and unverified
+2 Track modules (pair),1,"Two rubber track belts about 40 mm wide over 70 mm drive sprockets and idlers, aluminium side plates",Robot tank chassis kit supplier,60.00,buy,Indicative price; track width and tread for silt are open questions
+3 Worm gear motors,2,"12 V self-locking worm gear motors, about 80 rpm output, about 1 N·m rated, Hall encoders, double lip shaft seals",Electronics or robotics distributor,18.00,buy,Indicative price; self-locking gearbox holds the crawler on a grade without power
+4 Electronics stack,1,"Raspberry Pi 4 Model B 2 GB (hardware H.264 encoder), dual DC motor driver, 48 to 12 V and 12 to 5 V buck converters, 6-axis IMU, leak sensor, microSD card",Electronics distributor,110.00,buy,Indicative price (Pi about $45; converters about $25; driver about $12; IMU and leak sensor about $15; card about $10)
+5 Fisheye camera and dome port,1,"12 MP camera module (Sony IMX708 class) with M12 fisheye lens of 160 degrees or wider; 60 mm acrylic dome port",Camera module and ROV parts suppliers,60.00,buy,Indicative price; lens field of view limits profiling in 900 mm pipe
+6 LED ring light,1,"8 x 1 W high-CRI white LEDs on an aluminium ring board, dimmable constant-current driver",LED supplier,25.00,buy,Indicative price; dimmed during laser frames
+7 Laser ring projector on boom,1,"Class 2 (1 mW or less) 520 nm laser diode module with a 90 degree conical mirror in a clear acrylic tube, 200 mm ahead of the lens",Optics and laser module suppliers,45.00,buy,Indicative price; Class 2 brightness is sufficient only in a dark pipe (estimate)
+8 Ballast skid plate,1,"Steel plate about 210 x 80 x 12 mm (about 1.6 kg) with a turned-up front edge",Local fabricator,15.00,make,Indicative material cost; also protects the hull bottom
+9 Tether with strain relief,60,"Hybrid cable per meter: 2 twisted pairs (100BASE-TX) plus 2 x 0.75 mm2 power conductors, aramid strength member of 1 kN or more, PU jacket about 7 mm OD, about 55 g/m (estimate); strain relief and bend restrictor at the crawler",Cable supplier (ROV or industrial hybrid cable),2.00,buy,Indicative price per meter; custom hybrid cable may cost more
+10 Tether reel with slip ring and payout counter,1,"320 mm flanged reel on an A-frame with hand crank and brake, 6-circuit slip ring rated for 100 Mbit/s Ethernet, payout wheel with rotary encoder",Reel from local fabricator; slip ring and encoder from distributor,125.00,make,Indicative price (slip ring about $70; reel and frame about $35; encoder wheel about $20)
+11 Surface control box,1,"Rugged case about 410 x 330 x 175 mm; 12.8 V 20 Ah LiFePO4 battery with BMS; 12 to 48 V 100 W boost converter; 5 A fuse; latching emergency stop; tether current monitor with overcurrent cutoff; Ethernet bulkhead to the laptop",Battery and electronics distributors; case from outdoor retailer,185.00,buy,Indicative price (battery about $90; case about $45; boost about $20; stop and fuse and monitor about $30)
+12 Operator gamepad,1,"USB gamepad for driving; operator laptop is the user's own and not in the cost",Electronics retailer,20.00,buy,Indicative price
+13 Hardware and consumables,1,"O-rings, spare glands, stainless fasteners, silicone grease, heat-shrink, cable ties",Local hardware shop,30.00,buy,Indicative price; no exploded-view callout
