@@ -1,0 +1,149 @@
+quantity,value,unit
+crawler width over tracks,170,mm
+crawler height over lid screws,106,mm
+"crawler length, rear strain relief to cone mirror",510,mm
+"track length (sprocket to idler, over belt)",270,mm
+300 mm pipe: track contact line above invert,26.4,mm
+300 mm pipe: camera axis above invert,88.4,mm
+"300 mm pipe: least radial clearance, crawler to wall",50,mm
+600 mm pipe: track contact line above invert,12.3,mm
+600 mm pipe: camera axis above invert,74.3,mm
+"600 mm pipe: least radial clearance, crawler to wall",66,mm
+900 mm pipe: track contact line above invert,8.1,mm
+900 mm pipe: camera axis above invert,70.1,mm
+"900 mm pipe: least radial clearance, crawler to wall",69,mm
+track edge contact angle in 600 mm pipe,16.5,deg
+"normal load factor (sum of normals / weight), 600 mm",1.043,
+"normal load factor, 300 mm",1.214,
+"normal load factor, 900 mm",1.018,
+"mass: Hull and lid (6061, 2.70 kg/L)",1.09,kg
+"mass: Tracks, sprockets, side plates",1.00,kg
+mass: Worm gear motors (2 x 0.35 kg),0.70,kg
+mass: Electronics stack,0.20,kg
+"mass: Camera, dome, LED ring",0.15,kg
+mass: Laser projector and boom,0.10,kg
+"mass: Ballast plate (steel, 7.85 kg/L)",1.67,kg
+"mass: Fasteners, glands, seals, strain relief",0.40,kg
+crawler mass,5.31,kg
+"displaced volume, fully submerged",2.64,L
+net submerged mass,2.66,kg
+fraction of dry normal load left when submerged,0.50,
+design case: water depth above track contact line (600 mm),138,mm
+design case: crawler fully submerged (1 = yes),1,
+kit mass: Crawler,5.3,kg
+"kit mass: Tether, 60 m",3.3,kg
+"kit mass: Reel, frame, slip ring, counter",2.5,kg
+"kit mass: Surface box (LiFePO4 2.5 kg, case 3.0 kg, electronics 0.8 kg)",6.3,kg
+kit mass: Gamepad,0.2,kg
+whole kit mass,17.6,kg
+heaviest single item (reel with tether),5.8,kg
+tether weight in air,0.540,N/m
+tether weight submerged,0.162,N/m
+"dry 600 mm, uphill (enter at outlet): usable traction",26.0,N
+"dry 600 mm, uphill (enter at outlet): track resistance",8.1,N
+"dry 600 mm, uphill (enter at outlet): grade force (+ resists)",2.60,N
+"dry 600 mm, uphill (enter at outlet): water drag (+ resists)",0.00,N
+"dry 600 mm, uphill (enter at outlet): tether drag per meter",0.296,N/m
+"dry 600 mm, uphill (enter at outlet): REACH at 20 % reserve",52,m
+"dry 600 mm, downhill (enter at inlet): usable traction",26.0,N
+"dry 600 mm, downhill (enter at inlet): track resistance",8.1,N
+"dry 600 mm, downhill (enter at inlet): grade force (+ resists)",-2.60,N
+"dry 600 mm, downhill (enter at inlet): water drag (+ resists)",0.00,N
+"dry 600 mm, downhill (enter at inlet): tether drag per meter",0.242,N/m
+"dry 600 mm, downhill (enter at inlet): REACH at 20 % reserve",85,m
+"design case wet: submerged, 0.5 m/s flow, uphill: usable traction",13.1,N
+"design case wet: submerged, 0.5 m/s flow, uphill: track resistance",4.1,N
+"design case wet: submerged, 0.5 m/s flow, uphill: grade force (+ resists)",1.31,N
+"design case wet: submerged, 0.5 m/s flow, uphill: water drag (+ resists)",4.19,N
+"design case wet: submerged, 0.5 m/s flow, uphill: tether drag per meter",0.089,N/m
+"design case wet: submerged, 0.5 m/s flow, uphill: REACH at 20 % reserve",39,m
+"design case wet: submerged, 0.5 m/s flow, downhill: usable traction",13.1,N
+"design case wet: submerged, 0.5 m/s flow, downhill: track resistance",4.1,N
+"design case wet: submerged, 0.5 m/s flow, downhill: grade force (+ resists)",-1.31,N
+"design case wet: submerged, 0.5 m/s flow, downhill: water drag (+ resists)",-1.21,N
+"design case wet: submerged, 0.5 m/s flow, downhill: tether drag per meter",0.073,N/m
+"design case wet: submerged, 0.5 m/s flow, downhill: REACH at 20 % reserve",158,m
+dry uphill reach with no traction reserve,74,m
+wet uphill reach if submerged track friction is 0.45,3,m
+"wet case, reversing upstream with reel winding: force margin",3.5,N
+extra steel ballast for 50 m wet uphill,0.40,kg
+stationary in 0.5 m/s flow: water drag,2.5,N
+stationary submerged: static friction available,16.3,N
+sprocket torque per motor at the dry traction limit,0.67,N m
+top speed at 80 rpm,0.29,m/s
+hold on 5 % with power off: grade force,2.60,N
+hold on 5 %: static friction available,32.5,N
+"step climb, conservative rule (idler radius)",35,mm
+"step climb, friction bound r(1 + sin(atan mu)), mu = 0.6",53,mm
+"step climb, friction bound r(1 + sin(atan mu)), mu = 0.4",48,mm
+"pull, tracks locked, 50 m of tether, uphill of the crew",50,N
+tether break strength,1000,N
+safety factor on the locked-track pull,20.0,
+stuck pull the 1 kN member can take at a factor of 5,200,N
+crawler loads while driving and profiling,28.0,W
+tether loop resistance (2 x 60 m),3.12,ohm
+crawler input power,30.8,W
+tether current,0.67,A
+voltage at the crawler,45.9,V
+tether copper loss,1.40,W
+tether loss as share of boost output,4.4,%
+boost output,32.2,W
+battery output incl. surface electronics,36.0,W
+peak: tether current,1.25,A
+peak: voltage at the crawler,44.1,V
+peak: tether voltage drop,3.9,V
+peak battery current at 12.0 V (low charge),5.4,A
+tether loss if run at 24 V instead,8.24,W
+usable battery energy,230,Wh
+"endurance, nominal",6.4,h
+"endurance, derated 20 % for cold and ageing",5.1,h
+battery energy (nominal),256,Wh
+fisheye angular resolution (equidistant),0.139,deg/px
+300 mm: top of pipe angle off the camera axis,46.6,deg
+"300 mm, water 0 mm: mean diameter error (95th pct)",0.34,% of D
+"300 mm, water 0 mm: vertical diameter error (95th pct)",0.35,% of D
+"300 mm, water 0 mm: worst wall point error (95th pct)",1.5,mm
+600 mm: top of pipe angle off the camera axis,69.2,deg
+"600 mm, water 0 mm: mean diameter error (95th pct)",0.66,% of D
+"600 mm, water 0 mm: vertical diameter error (95th pct)",0.85,% of D
+"600 mm, water 0 mm: worst wall point error (95th pct)",5.6,mm
+"600 mm, water 150 mm: mean diameter error (95th pct)",0.70,% of D
+"600 mm, water 150 mm: vertical diameter error (95th pct)",0.87,% of D
+"600 mm, water 150 mm: worst wall point error (95th pct)",5.7,mm
+900 mm: top of pipe angle off the camera axis,76.5,deg
+"900 mm, water 0 mm: mean diameter error (95th pct)",1.12,% of D
+"900 mm, water 0 mm: vertical diameter error (95th pct)",1.48,% of D
+"900 mm, water 0 mm: worst wall point error (95th pct)",13.6,mm
+"900 mm, water 150 mm: mean diameter error (95th pct)",1.14,% of D
+"900 mm, water 150 mm: vertical diameter error (95th pct)",1.59,% of D
+"900 mm, water 150 mm: worst wall point error (95th pct)",14.1,mm
+900 mm with ring plane 300 mm ahead: vertical diameter error,0.97,% of D
+900 mm with ring plane 300 mm ahead: top of pipe angle,70.1,deg
+profiles per second (laser on alternate frames),25,1/s
+profile spacing at 0.15 m/s,6,mm
+profile spacing at top speed,12,mm
+"ring irradiance on the wall, 900 mm pipe",0.177,W/m2
+"signal electrons per pixel on the ring (10 ms, f/2)",272,e-
+shot-noise limited SNR,16,
+pupil share of emitted power at 100 mm from the cone (7 mm pupil),11,uW
+video frame rate (LED frames of a 50 fps stream),25,fps
+video stream (1080p H.264),8,Mbit/s
+"laser frames (1296 x 1296 grey JPEG, 1 bit/px)",42,Mbit/s
+link use of about 94 Mbit/s usable on 100BASE-TX,53,%
+LED luminous intensity (800 lm in a 120 deg cone),255,cd
+illuminance on the far wall of a 900 mm pipe (0.83 m),370,lx
+illuminance 2 m ahead down the pipe,64,lx
+"payout encoder resolution (50 mm wheel, 600 counts)",0.26,mm
+R6 distance tolerance at 50 m (1 % or 0.2 m),0.5,m
+heat inside the hull,11.0,W
+hull outer area,0.095,m2
+"hull rise over air, h = 8 W/(m2 K)",15,K
+"hull rise over water, h = 300 W/(m2 K)",0.4,K
+water pressure at 1 m (IP68 target),9.8,kPa
+cost: crawler (items 1 to 8),421,USD
+"cost: tether, reel and surface kit (items 9 to 12)",450,USD
+cost: hardware and consumables (item 13),30,USD
+BOM lines,13,
+BOM total,901,USD
+budget_usd,900,USD
+margin (budget minus total),-1,USD

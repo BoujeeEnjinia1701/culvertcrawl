@@ -70,3 +70,62 @@ Requirements not met or at risk:
 ### Recommended next step
 
 Review this note and the media, then decide items 1 to 3. If approved, run `/advance-trl3` to check the traction and reach, tether power, buoyancy and laser profiling error budget by calculation, and to produce the parametric model and drawing sheet.
+
+## Session 2026-09-25: TRL 3
+
+Amish approved all TRL 2 recommendations on 2026-09-25 ("proceed with all of your recommendations across all batches. Make sure we don't proceed to TRL 4 on any of them."). This session ran `/advance-trl3` and stopped at TRL 3.
+
+### What was done
+
+- `docs/decisions/0001-trl2-review-decisions.md` (CVC-DDR-001 v0.1): eight decided items and three that stay open.
+- `docs/04-calcs/01-sizing.md` (CVC-CAL-001 v0.1) with `docs/04-calcs/sizing.py` and `results.csv`: fit, mass and buoyancy, traction and reach (dry and submerged, both directions), recovery pull, tether power and endurance, a Monte Carlo profiling error budget, laser signal, video link, lighting, hull thermal and cost. The script reads `cad/src/model.py` and `bom/bom.csv`.
+- `cad/src/model.py`: parametric build123d model (crawler and surface kit) exporting `cad/step/culvertcrawl-crawler.step`, `cad/step/culvertcrawl-surface-kit.step` and matching STL files.
+- `cad/src/sheets.py` and `cad/drawings/CVC-DWG-001.svg`, `.pdf`, `.png`: general arrangement, Rev P1, with end-view fit checks in 300 and 900 mm pipe. The concept blueprint keeps CVC-DWG-010.
+- `bom/bom.csv` and `bom/bom-notes.md`: every line priced with a supplier type; specification changes for the camera (50 fps, circular fisheye) and fuses (10 A battery, 2 A tether). Total $901.
+- `cad/src/concept_media.py` now builds from the model; all media in `media/` regenerated and checked; `media/_views*` removed.
+- CVC-PRB-001, CVC-PRC-001 and CVC-REQ-001 moved to v0.3; `project.yaml` (`trl: 3`, `trl_target: 3`, `budget_usd: 900`, evidence list); `README.md` updated. Pitch and problem wording unchanged, as recommended.
+
+### Requirements (CVC-CAL-001)
+
+3 not met, 2 at risk, 1 not verifiable at TRL 3, 7 met on paper.
+
+| ID | Status | Key number |
+| --- | --- | --- |
+| R2 Reach | **Not met** | 39 m submerged, uphill against 0.5 m/s flow (target 50 m); 52 m dry uphill; 85 to 158 m downhill. Falls to about 3 m if submerged track friction is 0.45 |
+| R5 Profile | **Not met at 900 mm** | Vertical diameter error 1.59 % at 900 mm; 0.87 % at 600 mm; 0.35 % at 300 mm; 6 mm spacing |
+| R12 Cost | **Not met** | $901 against $900 |
+| R7 Water | At risk | Holds in flow on paper; fully submerged in the design case; IP68 not verifiable |
+| R8 Climb | At risk | Hold met; 40 mm step against a 35 to 53 mm limit |
+| R6 Locate | Not verifiable at TRL 3 | Encoder resolution 0.26 mm; slack and slip unknown |
+| R1, R3, R4, R9, R10, R11, R13 | Met on paper | 170 x 106 x 510 mm; 50 N pull, factor 20; 25 fps, 53 % link; 6.4 h; 17.6 kg; 48 V with 2 A and 10 A fuses |
+
+Corrections to TRL 2 numbers: crawler 5.3 kg (was 5.5 kg) and 106 mm high (was 125 mm); tether current 0.67 A and loss 1.40 W (was 0.65 A, 1.3 W); battery draw 36.0 W and 6.4 h (was 35 W, about 6 h); reach now includes lifting the tether up the grade and full submersion; lens needs a 180 degree circular fisheye at 0.139 degree per pixel (was 0.1 degree per pixel, not achievable while seeing the pipe top); profile spacing 6 mm at 50 fps (was 12 mm, which left video at 12.5 fps and missed R4); the 5 A fuse was below the 5.4 A peak battery current.
+
+### Decisions recorded (CVC-DDR-001)
+
+Decided by Amish, 2026-09-25, go with recommendation: budget $900; pipe range 300 to 900 mm; LiFePO4 surface battery (SwapCell input later, citing interface v0.3); tracks; 48 V surface power; Class 2 520 nm laser ring with fixed fisheye; processing on the laptop; pitch and problem unchanged.
+
+### Still awaiting Amish
+
+1. Output format first (PACP-style log, FHWA ratings or deflection report); no recommendation was made.
+2. First partner user group; not named (partners are picked per area later).
+3. Removable laser boom; no recommendation was made.
+4. **New, R2:** options are (a) add about 0.40 kg of ballast (restores 50 m wet uphill on paper at friction 0.6, but not at 0.45); (b) redefine the design case as entering from the upstream end; (c) accept a shorter reach in flooded pipes. Recommendation: (a) plus (b) as operating guidance; submerged track friction needs measuring once Amish lifts the TRL 4 hold.
+5. **New, R5:** options are (a) move the ring plane to 300 mm ahead (0.97 % at 900 mm, 100 mm longer boom); (b) narrow acceptance-grade profiling to 300 to 600 mm and report 900 mm as screening; (c) tilt the camera up. Recommendation: (a).
+6. **New, R12:** accept $901 as within pricing uncertainty, or trim $1 or more. Recommendation: accept and revisit when real quotes exist.
+
+### Safety concerns
+
+Unchanged from TRL 2, plus: the design-case crawler is fully submerged, so seal integrity on the drive shafts and lid is the main failure mode; never tie the tether to a vehicle (the 1 kN member and cable whip); the fuse split must be kept (10 A battery, 2 A tether, 1.5 A cutoff); the hull runs about 15 K above ambient in air, so the Pi needs a heat path to the wall. Confined space, flammable atmosphere, roadside traffic, fast water, LiFePO4 and Class 2 laser notes stay in CVC-PRC-001.
+
+### Citations
+
+Checked online on 2026-09-25: OSHA 29 CFR 1910.146 (title and definition), FHWA-IP-86-2 (1986), FHWA-CFL/TD-10-005 (2010), and both Duran, Althoefer and Seneviratne papers by title and journal (the 2007 paper at *IEEE Transactions on Automation Science and Engineering* 4, page 118). Still unchecked: the ASTM D2321 5 % deflection clause, NASSCO PACP, IEC 60825-1, IEC 60529 and commercial product pages.
+
+### Existing TRL 4 material
+
+None found. `build-log/` holds only its README and `.gitkeep`; `firmware/` and `electronics/` are empty.
+
+### Recommended next step
+
+TRL 4 is on hold by Amish's instruction. Next, Amish decides items 1 to 6 above; if 4 or 5 are accepted, a TRL 3 revision updates the model, the CAL note and the drawing to Rev P2. For the record only, TRL 4 would need: a submerged track friction and drawbar test on silt, a tank test of the sealed hull and shaft seals to 1 m, a laser ring calibration in 300, 600 and 900 mm reference pipes, a Pi 4 frame-rate and encoder load test, a test report (TST, `environment: lab`) and build log entries.

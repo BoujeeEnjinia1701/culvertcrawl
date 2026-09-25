@@ -1,8 +1,8 @@
 # CulvertCrawl
 
-![TRL 2](https://img.shields.io/badge/TRL-2%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827)
+![TRL 2](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827)
 
-**Area:** Situational Field Hardware · **TRL:** 2 of 9 (concept formulated) · **Prototype budget:** about $800 USD · **Difficulty:** 4 of 5
+**Area:** Situational Field Hardware · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** $900 USD · **Difficulty:** 4 of 5
 
 Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
 
@@ -18,9 +18,9 @@ Problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 ## Concept
 
-Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage. A 5.5 kg crawler drives up to about 50 m into the pipe on a 60 m tether carrying 48 V DC and Ethernet; a laser ring projected 200 mm ahead of a fisheye camera gives a cross-section every few centimeters, from which the operator's laptop reports diameter, ovality and sediment depth against distance. All figures are TRL 2 estimates.
+Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage. A 5.3 kg crawler drives into the pipe on a 60 m tether carrying 48 V DC and Ethernet; a laser ring projected 200 mm ahead of a fisheye camera gives a cross-section every 6 mm, from which the operator's laptop reports diameter, ovality and sediment depth against distance. The TRL 3 calculations ([CVC-CAL-001](docs/04-calcs/01-sizing.md)) give 6.4 h per charge and profile accuracy within 1 % of diameter in 300 and 600 mm pipe. Reach in a flooded pipe driving uphill (about 39 m against 50 m) and accuracy at 900 mm (about 1.6 %) are not yet met. All figures are calculated estimates.
 
-Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md)
+Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md) · Calculations: [docs/04-calcs/01-sizing.md](docs/04-calcs/01-sizing.md) · General arrangement: [cad/drawings/CVC-DWG-001.pdf](cad/drawings/CVC-DWG-001.pdf) · Model: [cad/src/model.py](cad/src/model.py)
 
 ## Key components
 
@@ -33,7 +33,7 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 - Raspberry Pi 4 in the crawler
 - Surface control box with LiFePO4 battery, 48 V boost and emergency stop
 
-The working bill of materials is in [bom/bom.csv](bom/bom.csv). The first indicative total is about $900, over the $800 budget; a change is proposed in the [review note](docs/REVIEW.md).
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $901 against the $900 budget Amish set on 2026-09-25; see the [review note](docs/REVIEW.md).
 
 ## Repository layout
 

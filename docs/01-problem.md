@@ -3,7 +3,7 @@ doc_id: CVC-PRB-001
 title: CulvertCrawl problem statement
 project: CulvertCrawl
 doc_type: Problem statement
-version: "0.2"
+version: "0.3"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -17,6 +17,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Populate to TRL 2 (users, context, current practice, constraints, out of scope, prior work)
+- version: "0.3"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: TRL 3. Record Amish's 2026-09-25 decisions (CVC-DDR-001) on budget and pipe range; citation check
 ---
 
 # CulvertCrawl problem statement
@@ -56,7 +60,7 @@ The missing piece is a measurement, not only a picture. Plastic pipe acceptance 
 
 ## Constraints
 
-- Garage-buildable prototype, about $800 USD in parts (`project.yaml`). The first estimate is about $900; see CVC-PRC-001 and `docs/REVIEW.md`.
+- Garage-buildable prototype, $900 USD in parts (`project.yaml`; raised from $800 by Amish on 2026-09-25, CVC-DDR-001). The priced BOM is $901 (CVC-CAL-001).
 - No person enters the pipe at any stage, including recovery of a stuck crawler.
 - Safe extra-low voltage only in the tether and crawler (48 V DC or less), and an eye-safe laser (Class 2 or lower) so the tool can be used by non-specialists.
 - Carried by two people from a vehicle to a ditch in one trip, and set up in minutes.
@@ -79,15 +83,16 @@ The missing piece is a measurement, not only a picture. Plastic pipe acceptance 
 - **Push cameras and borescopes.** Plumbing push cameras (fiberglass rod, 20 to 60 m) are cheap and widely owned but have no drive, weak lighting for 600 mm pipe and no measurement.
 - **Defect coding.** NASSCO PACP gives a common vocabulary for pipe defects (deformation, cracks, joints, deposits, obstructions), and the FHWA culvert manuals give condition ratings for culvert barrels.
 
-Sources are cited from the named documents and product pages. Their editions and links were not rechecked online in this session and will be checked at TRL 3.
+Sources were checked online on 2026-09-25 where possible: the OSHA 1910.146 title and confined-space definition (osha.gov), FHWA-IP-86-2 (1986) and FHWA-CFL/TD-10-005 (2010) by their FHWA and TRB catalog entries, and both Duran, Althoefer and Seneviratne papers by title and journal (the 2007 paper at volume 4, page 118). The ASTM D2321 deflection clause, the NASSCO PACP page and the product pages were not rechecked.
 
 ## Open questions
 
 - Who is the first user group for field trials (a county road department, a watershed group or a university transportation program)? Proposed, awaiting Amish.
-- Which pipe range matters most in practice? The concept covers 300 to 900 mm; a narrower 300 to 600 mm range would make profiling and fit easier.
+- The pipe range stays 300 to 900 mm (decided by Amish, 2026-09-25). CVC-CAL-001 shows R5 is not met at 900 mm with the current geometry; users should say how often 900 mm pipes need an acceptance-grade number.
 - What reach is needed? 50 m is assumed from typical two-lane and four-lane road crossings; to validate with users.
 - Is an acceptance-grade deflection number (for new plastic pipe) needed, or is condition screening enough? This sets the profiling accuracy requirement.
-- Should the tool produce a PACP-style report, the FHWA condition ratings, or both?
+- Should the tool produce a PACP-style report, the FHWA condition ratings, or both? Proposed, awaiting Amish.
+- From which end do crews usually enter a culvert? CVC-CAL-001 shows reach depends strongly on direction (about 39 m uphill against flow, more than 80 m downhill).
 
 ## User research and co-design
 
