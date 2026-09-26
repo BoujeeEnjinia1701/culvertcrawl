@@ -3,7 +3,7 @@ doc_id: CVC-PRC-001
 title: CulvertCrawl design precis
 project: CulvertCrawl
 doc_type: Design precis
-version: "0.3"
+version: "0.4"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -21,11 +21,15 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: TRL 3. Record Amish's 2026-09-25 decisions (CVC-DDR-001); numbers checked against CVC-CAL-001; camera at 50 fps with circular fisheye; fuse split; model and drawing CVC-DWG-001
+- version: "0.4"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: Recommendations accepted by Amish (DDR-002)
 ---
 
 # CulvertCrawl design precis
 
-CulvertCrawl is a small tracked crawler, about 510 x 170 x 106 mm and 5.3 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 200 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001) give 6.4 h per charge, profile accuracy of 0.35 % and 0.87 % of diameter in 300 and 600 mm pipe, and a parts cost of $901 against the $900 budget. Three requirements are not met on paper: reach falls to about 39 m when the crawler drives submerged and uphill against the flow (R2), accuracy is about 1.6 % at 900 mm (R5), and the cost is $1 over (R12). All numbers are calculated estimates, not measurements.
+CulvertCrawl is a small tracked crawler, about 610 x 170 x 106 mm and 5.8 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 300 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001 v0.2) give 6.4 h per charge, 52 m of reach when the crawler drives submerged and uphill against the flow, profile accuracy of 0.24 %, 0.62 % and 0.97 % of diameter in 300, 600 and 900 mm pipe, and a parts cost of $906 against the $900 budget. Reach and 900 mm accuracy are met with thin margins after the design changes Amish accepted on 2026-09-25 (CVC-DDR-002); the cost is $6 over (R12). All numbers are calculated estimates, not measurements.
 
 ![Hero render](../media/hero.png)
 
@@ -37,8 +41,9 @@ CulvertCrawl is a small tracked crawler, about 510 x 170 x 106 mm and 5.3 kg, th
 2. **Power and data.** A 12.8 V LiFePO4 battery in the surface box feeds a boost converter that puts 48 V DC on two power conductors in the tether. Two twisted pairs in the same tether carry 100 Mbit/s Ethernet between the laptop and the crawler. A slip ring in the reel hub lets the drum turn while connected. The surface box holds a 10 A fuse at the battery, a 2 A fuse on the 48 V output, a 1.5 A overcurrent cutoff and a latching emergency stop that kills tether power.
 3. **Drive.** Inside the sealed aluminium hull, a Raspberry Pi 4 runs the motor driver for two self-locking worm gear motors, one per rubber track. The operator drives with the gamepad at about 0.15 m/s while surveying. The worm gears hold the crawler on a slope with power off.
 4. **See.** A 12 MP camera with a 180 degree circular fisheye lens looks forward through an acrylic dome, lit by a ring of eight 1 W LEDs. The Pi encodes the LED frames as 1080p H.264 video at 25 frames per second in hardware and streams it to the laptop, which records it with distance, time and attitude overlaid. Distance comes from the payout counter at the reel, cross-checked by track odometry; pitch and roll come from an IMU in the hull.
-5. **Measure.** The camera runs at 50 frames per second; the LEDs light alternate frames for video and the laser ring is captured on the frames between. A Class 2 laser diode at the tip of a clear boom shines onto a 90 degree conical mirror, which spreads the beam into a thin disc of light perpendicular to the crawler axis, 200 mm ahead of the lens. Where the disc meets the wall it draws a bright ring. On the laser frames the LEDs dim and the software finds the ring in the image. Because the ring plane is fixed relative to the camera, each ring pixel defines a ray that meets the plane at exactly one point, so the wall is triangulated in 3D even when the crawler is well below the pipe axis. The software fits a circle and an ellipse to each ring, and reports mean diameter, ovality, and the height of any flat sediment or water surface across the invert, every 6 mm of travel at survey speed.
-6. **Recover.** The crawler reverses out while the operator winds the reel. If it stalls or loses power, the tether's aramid strength member lets the crew pull it out by hand; nobody enters the pipe.
+5. **Measure.** The camera runs at 50 frames per second; the LEDs light alternate frames for video and the laser ring is captured on the frames between. A Class 2 laser diode at the tip of a clear boom shines onto a 90 degree conical mirror, which spreads the beam into a thin disc of light perpendicular to the crawler axis, 300 mm ahead of the lens. Where the disc meets the wall it draws a bright ring. On the laser frames the LEDs dim and the software finds the ring in the image. Because the ring plane is fixed relative to the camera, each ring pixel defines a ray that meets the plane at exactly one point, so the wall is triangulated in 3D even when the crawler is well below the pipe axis. The software fits a circle and an ellipse to each ring, and reports mean diameter, ovality, and the height of any flat sediment or water surface across the invert, every 6 mm of travel at survey speed.
+6. **Choose the entry end.** In flooded pipes, enter from the upstream end and drive with the flow where access allows (operating guidance, CVC-DDR-002); reach driving upstream against the flow is the thinnest margin in the design.
+7. **Recover.** The crawler reverses out while the operator winds the reel. If it stalls or loses power, the tether's aramid strength member lets the crew pull it out by hand; nobody enters the pipe.
 
 ![Power flow](../media/flow.png)
 
@@ -56,8 +61,8 @@ Numbers match the exploded view (Figure 3) and `bom/bom.csv`.
 | 4 | Electronics stack | Raspberry Pi 4 Model B 2 GB, dual motor driver, 48 to 12 V and 12 to 5 V converters, IMU, leak sensor | Pi 4 chosen for its hardware H.264 encoder |
 | 5 | Fisheye camera and dome port | 12 MP IMX708 module with M12 mount at 2304 x 1296 and 50 fps; 180 degree circular fisheye with the image circle inside the sensor height; 60 mm acrylic dome centered on the lens | Dome keeps the wide field of view if the port is wet |
 | 6 | LED ring light | 8 x 1 W high-CRI white LEDs, about 800 lm (estimate), dimmable | Dimmed on laser frames |
-| 7 | Laser ring projector | Class 2 (1 mW or less) 520 nm diode, 90 degree conical mirror, clear boom 200 mm ahead of the lens | Removable boom for tight or bent pipes: proposed, awaiting Amish |
-| 8 | Ballast skid plate | Steel 210 x 80 x 12 mm, about 1.67 kg, turned-up front lip | Raises traction and protects the hull |
+| 7 | Laser ring projector | Class 2 (1 mW or less) 520 nm diode, 90 degree conical mirror, clear boom 300 mm ahead of the lens (200 mm before CVC-DDR-002) | Removable boom for tight or bent pipes: proposed, awaiting Amish |
+| 8 | Ballast skid plate | Steel 230 x 80 x 14 mm, about 2.13 kg, turned-up front lip, 8 mm above the track contact line (was 210 x 80 x 12 mm, 1.67 kg) | Raises traction and protects the hull; enlarged for R2 (CVC-DDR-002) |
 | 9 | Tether | 60 m hybrid: 2 twisted pairs plus 2 x 0.75 mm² power, aramid member, PU jacket about 7 mm, about 55 g/m (estimate) | Also the recovery line |
 | 10 | Tether reel | 320 mm flanged reel, A-frame, crank and brake, Ethernet-rated slip ring, payout encoder wheel | Payout counter gives distance |
 | 11 | Surface control box | Rugged case; 12.8 V 20 Ah LiFePO4 with BMS; 12 to 48 V boost; 10 A and 2 A fuses; emergency stop; 1.5 A overcurrent cutoff | Laptop connects by Ethernet |
@@ -71,9 +76,9 @@ Numbers match the exploded view (Figure 3) and `bom/bom.csv`.
 
 *Figure 4. Cutaway of the crawler along its axis: dome and camera, electronics stack, worm gear motors at the rear, ballast plate underneath, and the laser boom ahead of the dome.*
 
-The parametric build123d model is `cad/src/model.py` (STEP and STL in `cad/step/` and `cad/stl/`), and the general arrangement is drawing CVC-DWG-001 Rev P1 (`cad/drawings/CVC-DWG-001.pdf`).
+The parametric build123d model is `cad/src/model.py` (STEP and STL in `cad/step/` and `cad/stl/`), and the general arrangement is drawing CVC-DWG-001 Rev P2 (`cad/drawings/CVC-DWG-001.pdf`).
 
-## Key numbers (from CVC-CAL-001)
+## Key numbers (from CVC-CAL-001 v0.2)
 
 This section summarizes the TRL 3 calculation note, CVC-CAL-001 (`docs/04-calcs/01-sizing.md`); every value is printed by `docs/04-calcs/sizing.py`. The design case is a straight 600 mm corrugated steel culvert, 50 m long, on a 5 % slope, with a wet silt invert and 150 mm of water at 0.5 m/s.
 
@@ -81,11 +86,11 @@ This section summarizes the TRL 3 calculation note, CVC-CAL-001 (`docs/04-calcs/
 
 | Item | Value | Basis |
 | --- | --- | --- |
-| Crawler | 5.31 kg | Hull 1.09 kg and ballast 1.67 kg from model volumes; other parts estimated |
-| Displaced volume | 2.64 L | Hull envelope, dome, tracks, ballast, boom |
-| Net weight fully submerged | 2.66 kg | Half the dry normal load |
+| Crawler | 5.77 kg | Hull 1.09 kg and ballast 2.13 kg from model volumes; other parts estimated |
+| Displaced volume | 2.73 L | Hull envelope, dome, tracks, ballast, boom |
+| Net weight fully submerged | 3.05 kg | 53 % of the dry normal load |
 | Design case | Fully submerged | 138 mm of water above the track contact line against a 106 mm crawler |
-| Whole kit | 17.6 kg; heaviest case 6.3 kg | R10 met on mass |
+| Whole kit | 18.1 kg; heaviest case 6.3 kg | R10 met on mass |
 
 ### Traction and reach
 
@@ -93,12 +98,12 @@ Reach is the tether length whose drag uses up the traction left after track resi
 
 | Case | Reach | Requirement |
 | --- | --- | --- |
-| Dry, uphill | 52 m | Met, thin margin |
-| Dry, downhill | 85 m | Met |
-| Design case: submerged, uphill against 0.5 m/s flow | **39 m** | **R2 not met** |
-| Design case: submerged, downhill with the flow | 158 m | Met |
+| Dry, uphill | 56 m | Met |
+| Dry, downhill | 92 m | Met |
+| Design case: submerged, uphill against 0.5 m/s flow | **52 m** | Met on paper, thin margin (39 m before CVC-DDR-002) |
+| Design case: submerged, downhill with the flow | 178 m | Met |
 
-The wet result is very sensitive to track friction under water: at 0.45 instead of 0.6, wet uphill reach falls to about 3 m. About 0.40 kg of extra ballast would restore 50 m on paper. Sprocket torque at the dry traction limit is 0.67 N·m per motor; top speed is 0.29 m/s.
+The wet result is very sensitive to track friction under water: at 0.45 instead of 0.6, wet uphill reach falls to about 10 m. Measuring that friction is TRL 4 work, on hold. Sprocket torque at the dry traction limit is 0.73 N·m per motor, within the 1 N·m motor rating; top speed is 0.29 m/s.
 
 ### Power and endurance
 
@@ -115,30 +120,30 @@ At 24 V the tether would lose 8.24 W. The peak battery current of 5.4 A exceeds 
 
 ### Laser ring profiling
 
-The ring plane sits 200 mm ahead of the dome center. With the camera 70 mm above the invert of a 900 mm pipe, the top of the pipe is 76.5 degrees off the camera axis, beyond the vertical field of a 160 degree lens on a 16:9 frame. The design therefore uses a 180 degree circular fisheye inside the 1296 px sensor height (0.139 degree per pixel). A Monte Carlo of ring centroid noise, lens model residual, ring plane tilt and distance, and crawler yaw gives, at the 95th percentile:
+The ring plane sits 300 mm ahead of the dome center (200 mm before CVC-DDR-002). With the camera 70 mm above the invert of a 900 mm pipe, the top of the pipe is 70.1 degrees off the camera axis (76.5 degrees at 200 mm), beyond the vertical field of a 160 degree lens on a 16:9 frame. The design therefore uses a 180 degree circular fisheye inside the 1296 px sensor height (0.139 degree per pixel). A Monte Carlo of ring centroid noise, lens model residual, ring plane tilt and distance, and crawler yaw gives, at the 95th percentile:
 
 | Pipe | Vertical diameter error | R5 (1 % of diameter) |
 | --- | --- | --- |
-| 300 mm | 0.35 % | Met |
-| 600 mm (150 mm of water) | 0.87 % | Met, thin margin |
-| 900 mm (150 mm of water) | 1.59 % | **Not met** |
+| 300 mm | 0.24 % | Met |
+| 600 mm (150 mm of water) | 0.62 % | Met |
+| 900 mm (150 mm of water) | 0.97 % | Met, thin margin (1.49 % with the ring plane at 200 mm) |
 
-Moving the ring plane to 300 mm ahead gives 0.97 % at 900 mm (proposed, awaiting Amish). The profile covers only the wall above any water surface, because the light refracts at the water line; the software reports the water or sediment chord instead. At 25 profiles per second, the spacing is 6 mm at 0.15 m/s. A 1 mW ring gives about 272 signal electrons per pixel on the wall of a 900 mm pipe, enough in a dark pipe.
+The longer boom puts the cone mirror about 300 mm ahead of the tracks, which matters in bends and at offset joints (see the open removable-boom question). The profile covers only the wall above any water surface, because the light refracts at the water line; the software reports the water or sediment chord instead. At 25 profiles per second, the spacing is 6 mm at 0.15 m/s. A 1 mW ring gives about 272 signal electrons per pixel on the wall of a 900 mm pipe, enough in a dark pipe.
 
 ### Cost
 
 | Group | Cost | Requirement |
 | --- | --- | --- |
-| Crawler (items 1 to 8) | $421 | |
+| Crawler (items 1 to 8) | $426 | Ballast +$3 and boom +$2 (CVC-DDR-002) |
 | Tether, reel and surface kit (items 9 to 12) | $450 | |
 | Hardware and consumables (item 13) | $30 | |
-| **Total** | **$901** | R12 ($900) not met by $1 |
+| **Total** | **$906** | R12 ($900) not met by $6; $1 accepted by Amish as pricing uncertainty, $5 awaiting Amish |
 
 The laptop is excluded.
 
 ## Key design choices
 
-Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the recommendations (CVC-DDR-001).
+Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the recommendations (CVC-DDR-001), and later the same day accepted the TRL 3 recommendations on reach, profiling and cost (CVC-DDR-002).
 
 - **Tracks rather than wheels.** Tracks spread the load on silt and ride over corrugations and joint offsets. Decided by Amish, 2026-09-25: go with recommendation.
 - **Power from the surface over the tether at 48 V DC, with no battery in the crawler.** Surface power keeps lithium cells out of the pipe and the crawler small. At 48 V the tether loses 4.4 %; at 24 V it would lose about six times as much. 48 V stays below the 60 V DC extra-low-voltage limit. Decided by Amish, 2026-09-25: go with recommendation.
@@ -148,6 +153,9 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - **Pipe range 300 to 900 mm.** Kept, with the 900 mm case checked at TRL 3 (R5 not met at 900 mm). Decided by Amish, 2026-09-25: go with recommendation.
 - **Budget $900.** Decided by Amish, 2026-09-25: go with recommendation.
 - **Removable laser boom.** Proposed, awaiting Amish (no recommendation was made at TRL 2).
+- **Heavier ballast plate for reach (R2).** 230 x 80 x 14 mm steel, 2.13 kg (was 1.67 kg), plus the operating guidance to enter flooded pipes from the upstream end. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). Measuring submerged track friction is TRL 4 work, on hold.
+- **Ring plane 300 mm ahead of the camera (R5).** Was 200 mm; the boom is 100 mm longer. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002).
+- **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is proposed, awaiting Amish (recommendation: accept on the same basis).
 - **Camera at 50 frames per second with a circular fisheye.** A TRL 3 engineering choice so that video (R4) and profiling (R5) are both met from one camera; recorded in CVC-CAL-001.
 
 ## Safety
@@ -165,11 +173,12 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 
 ## Open questions
 
-- Reach in the wet, uphill design case is about 39 m and very sensitive to track friction under water. Add ballast, define the design case as entering from the upstream end, or both? Proposed, awaiting Amish (see `docs/REVIEW.md`).
+- Reach in the wet, uphill design case is 52 m on paper but very sensitive to track friction under water; what is the real submerged friction on silt? (TRL 4 measurement, on hold.)
 - Will double lip seals on the drive shafts hold IP68, or is a magnetic coupling or a sealed motor pod needed?
 - Is a Class 2 laser bright enough near a sunlit mouth or on a reflective wall, or does the camera need a narrowband filter?
 - Can a Pi 4 capture at 50 frames per second and run the H.264 and JPEG encoders at once?
-- Should the ring plane move to 300 mm ahead to meet R5 at 900 mm? Proposed, awaiting Amish.
+- Should the laser boom be removable for tight or bent pipes, now that it overhangs the tracks by about 300 mm? Proposed, awaiting Amish (no recommendation made).
+- Is the $5 overrun from the ballast and boom changes ($906 against $900) accepted on the same basis as the first $1? Proposed, awaiting Amish; recommendation: accept and revisit with real quotes.
 - Which outputs do users need first: a PACP-style observation log, FHWA condition ratings, or a deflection report? Proposed, awaiting Amish.
 
 ## References

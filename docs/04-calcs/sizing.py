@@ -1,4 +1,4 @@
-"""CulvertCrawl sizing calculations, CVC-CAL-001 v0.1.
+"""CulvertCrawl sizing calculations, CVC-CAL-001 v0.2.
 
 Run from the repo root:  python docs/04-calcs/sizing.py
 Prints every number quoted in docs/04-calcs/01-sizing.md and writes docs/04-calcs/results.csv.
@@ -105,7 +105,7 @@ mass = {
     "Worm gear motors (2 x 0.35 kg)": 0.70,
     "Electronics stack": 0.20,
     "Camera, dome, LED ring": 0.15,
-    "Laser projector and boom": 0.10,
+    "Laser projector and boom": 0.11,   # 300 mm ring plane (DDR-002); 0.10 kg at 200 mm
     "Ballast plate (steel, 7.85 kg/L)": ballast_v * 7.85,
     "Fasteners, glands, seals, strain relief": 0.40,
 }
@@ -261,7 +261,7 @@ E = {"sigma_px": 0.3,        # random ring-center localization, 1 sigma
 rng = np.random.default_rng(7)
 
 
-def ring_sim(d, water=0.0, ring_d=P["ring_d"], trials=400, n=720):
+def ring_sim(d, water=0.0, ring_d=P["ring_d"], trials=2000, n=720):
     """Monte Carlo of one ring measurement in a round pipe. Returns 95th percentile errors (mm) of
     mean diameter, vertical diameter (deflection) and the worst single wall point."""
     R = d / 2
@@ -321,9 +321,8 @@ for d in (300, 600, 900):
         out(f"{tag}: mean diameter error (95th pct)", ed / d * 100, "% of D", "{:.2f}")
         out(f"{tag}: vertical diameter error (95th pct)", ev / d * 100, "% of D", "{:.2f}")
         out(f"{tag}: worst wall point error (95th pct)", ep, "mm", "{:.1f}")
-ed, ev, ep, top = ring_sim(900, 0.0, ring_d=300.0)
-out("900 mm with ring plane 300 mm ahead: vertical diameter error", ev / 900 * 100, "% of D", "{:.2f}")
-out("900 mm with ring plane 300 mm ahead: top of pipe angle", top, "deg", "{:.1f}")
+ed, ev, ep, top = ring_sim(900, A["water_depth"], ring_d=200.0)
+out("900 mm, water 150 mm, former 200 mm ring plane: vertical diameter error", ev / 900 * 100, "% of D", "{:.2f}")
 profiles_s = A["cam_fps"] / 2
 out("profiles per second (laser on alternate frames)", profiles_s, "1/s", "{:.0f}")
 out("profile spacing at 0.15 m/s", A["speed"] / profiles_s * 1000, "mm", "{:.0f}")

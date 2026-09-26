@@ -3,7 +3,7 @@ doc_id: CVC-DDR-001
 title: CulvertCrawl TRL 2 review decisions
 project: CulvertCrawl
 doc_type: Design decision record
-version: "0.1"
+version: "0.2"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -13,6 +13,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Record Amish's 2026-09-25 decisions on the TRL 2 review
+- version: "0.2"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: Recommendations accepted by Amish (DDR-002)
 ---
 
 # 0001: TRL 2 review decisions
@@ -58,7 +62,7 @@ These had no recommendation to accept and stay **Proposed, awaiting Amish**:
 10. **First partner user group** for field trials (county road department, watershed group or university transportation program). Not named.
 11. **Removable laser boom** for tight or bent pipes. Marked "proposed" in CVC-PRC-001 v0.2 without a recommendation.
 
-New proposals from the TRL 3 calculations (R2, R5, R8) are listed in `docs/REVIEW.md` and are also awaiting Amish.
+The new proposals from the TRL 3 calculations (R2 reach, R5 at 900 mm and R12 cost) were decided by Amish on 2026-09-25 by accepting the recommendations; see CVC-DDR-002 (`docs/decisions/0002-recommendations-accepted.md`). Items 9 to 11 had no recommendation and stay open.
 
 ## Consequences
 

@@ -3,7 +3,7 @@ doc_id: CVC-CAL-001
 title: CulvertCrawl sizing calculations
 project: CulvertCrawl
 doc_type: Calculation note
-version: "0.1"
+version: "0.2"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -13,11 +13,15 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: First TRL 3 sizing note (fit, mass, buoyancy, traction and reach, recovery, power, profiling error, video link, thermal, cost)
+- version: "0.2"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: Recommendations accepted by Amish (DDR-002). Ballast 230 x 80 x 14 mm; ring plane 300 mm ahead; 2,000 Monte Carlo trials; results rerun
 ---
 
 # CulvertCrawl sizing calculations
 
-On paper the crawler fits every target pipe, runs 6.4 h per charge, profiles 300 and 600 mm pipe to within 1 % of diameter, and stays within safe extra-low voltage. Three requirements are **not met**: R2 (reach falls to about 39 m when the crawler drives uphill and upstream, fully submerged, in the design case), R5 at 900 mm (vertical diameter error about 1.6 % of diameter) and R12 (priced BOM $901 against the $900 budget). R7 (IP68) and R8 (40 mm step) are at risk, and R6 (distance) cannot be verified until hardware exists, which is TRL 4 work and on hold by Amish's instruction.
+Version 0.2 applies the design changes Amish accepted on 2026-09-25 (CVC-DDR-002): the ballast plate grows from 210 x 80 x 12 mm to 230 x 80 x 14 mm (1.67 to 2.13 kg), and the laser ring plane moves from 200 to 300 mm ahead of the camera. On paper the crawler now fits every target pipe, reaches 52 m in the wet uphill design case (was 39 m), profiles 300 to 900 mm pipe to within 1 % of diameter (0.97 % at 900 mm, was 1.59 %), runs 6.4 h per charge and stays within safe extra-low voltage. R2 and R5 are met with thin margins. One requirement is **not met**: R12 (priced BOM $906 against the $900 budget; Amish accepted the first $1 as within pricing uncertainty). R7 (IP68) and R8 (40 mm step) are at risk, and R6 (distance) cannot be verified until hardware exists, which is TRL 4 work and on hold by Amish's instruction.
 
 Every number in this note is printed by `docs/04-calcs/sizing.py` (run from the repo root: `python docs/04-calcs/sizing.py`), which also writes `docs/04-calcs/results.csv`. The script reads its dimensions from `cad/src/model.py` (`PARAMS`) and the cost from `bom/bom.csv`, so the note, the model and the BOM share one source. All values are first-principles estimates; nothing here is measured.
 
@@ -40,10 +44,12 @@ Every number in this note is printed by `docs/04-calcs/sizing.py` (run from the 
 | Camera | IMX708 at 2304 x 1296, 50 frames per second, LEDs and laser on alternate frames | Chosen here to meet R4 and R5 together |
 | Lens | 180 degree equidistant circular fisheye, image circle 1296 px, so 0.139 degree per pixel | See section 6 |
 | Profiling errors (1 sigma) | Ring center 0.3 px random; lens model residual 0.3 px at the image edge; ring plane tilt 0.1 degree; ring plane distance 0.3 mm; crawler yaw uniform within 2 degrees | Calibration in a reference pipe assumed |
+| Ring plane | 300 mm ahead of the dome center (200 mm in v0.1) | Decided (CVC-DDR-002) |
+| Ballast | Steel plate 230 x 80 x 14 mm, 8 mm above the track contact line (210 x 80 x 12 mm at 10 mm in v0.1) | Decided (CVC-DDR-002) |
 
 ## 2. Geometry and fit (R1)
 
-The model (`cad/src/model.py`, drawing CVC-DWG-001) gives a crawler 170 mm wide over the tracks, 106 mm high over the lid screws and 510 mm long from the rear strain relief to the cone mirror (track length 270 mm). The outer track edges bear on the curved invert. Table 2 shows that the crawler clears the wall by at least 50 mm in every target pipe.
+The model (`cad/src/model.py`, drawing CVC-DWG-001) gives a crawler 170 mm wide over the tracks, 106 mm high over the lid screws and 610 mm long from the rear strain relief to the cone mirror (track length 270 mm); the longer laser boom adds 100 mm. The fit check below is for straight pipe; the boom overhangs the tracks by about 300 mm, so tight bends and offset joints need the removable boom question settled (still open). The outer track edges bear on the curved invert. Table 2 shows that the crawler clears the wall by at least 50 mm in every target pipe.
 
 *Table 2. Fit in the target pipes.*
 
@@ -66,14 +72,14 @@ The track edges meet the 600 mm wall at 16.5 degrees, so the sum of the normal f
 | Worm gear motors | 0.70 kg | 2 x 0.35 kg, 5840 class |
 | Electronics stack | 0.20 kg | |
 | Camera, dome, LED ring | 0.15 kg | |
-| Laser projector and boom | 0.10 kg | |
-| Ballast plate | 1.67 kg | Model volume, steel at 7.85 kg/L |
+| Laser projector and boom | 0.11 kg | 100 mm longer acrylic boom (0.10 kg in v0.1) |
+| Ballast plate | 2.13 kg | Model volume, steel at 7.85 kg/L (1.67 kg in v0.1) |
 | Fasteners, glands, seals, strain relief | 0.40 kg | Allowance |
-| **Crawler** | **5.31 kg** | TRL 2 estimate was 5.5 kg |
+| **Crawler** | **5.77 kg** | 5.31 kg in v0.1; TRL 2 estimate was 5.5 kg |
 
-Fully submerged, the crawler displaces 2.64 L, so its net mass is 2.66 kg: half of the dry normal load is left for traction. In the design case the water is 138 mm deep above the track contact line, deeper than the 106 mm crawler, so the crawler **is fully submerged**. The TRL 2 reach estimate did not account for this.
+Fully submerged, the crawler displaces 2.73 L, so its net mass is 3.05 kg (2.66 kg in v0.1): 53 % of the dry normal load is left for traction. In the design case the water is 138 mm deep above the track contact line, deeper than the 106 mm crawler, so the crawler **is fully submerged**. The TRL 2 reach estimate did not account for this.
 
-The whole kit weighs 17.6 kg (crawler 5.3 kg, tether 3.3 kg, reel and frame 2.5 kg, surface box 6.3 kg, gamepad 0.2 kg). The heaviest single case is the surface box at 6.3 kg; the reel with tether is 5.8 kg.
+The whole kit weighs 18.1 kg (crawler 5.8 kg, tether 3.3 kg, reel and frame 2.5 kg, surface box 6.3 kg, gamepad 0.2 kg). The heaviest single case is the surface box at 6.3 kg; the reel with tether is 5.8 kg.
 
 ## 4. Traction and reach (R2, R8)
 
@@ -83,22 +89,22 @@ Reach is the tether length whose drag uses up the traction left after track resi
 
 | Case | Usable traction | Track resistance | Grade | Water drag | Tether drag | **Reach** |
 | --- | --- | --- | --- | --- | --- | --- |
-| Dry, uphill (enter at the outlet) | 26.0 N | 8.1 N | 2.60 N | 0 | 0.296 N/m | **52 m** |
-| Dry, downhill (enter at the inlet) | 26.0 N | 8.1 N | -2.60 N | 0 | 0.242 N/m | 85 m |
-| Design case wet, uphill against 0.5 m/s flow | 13.1 N | 4.1 N | 1.31 N | 4.19 N | 0.089 N/m | **39 m** |
-| Design case wet, downhill with the flow | 13.1 N | 4.1 N | -1.31 N | -1.21 N | 0.073 N/m | 158 m |
+| Dry, uphill (enter at the outlet) | 28.3 N | 8.8 N | 2.83 N | 0 | 0.296 N/m | **56 m** |
+| Dry, downhill (enter at the inlet) | 28.3 N | 8.8 N | -2.83 N | 0 | 0.242 N/m | 92 m |
+| Design case wet, uphill against 0.5 m/s flow | 14.9 N | 4.7 N | 1.49 N | 4.19 N | 0.089 N/m | **52 m** |
+| Design case wet, downhill with the flow | 14.9 N | 4.7 N | -1.49 N | -1.21 N | 0.073 N/m | 178 m |
 
-- **R2 is not met in the worst case.** Submerged and driving upstream, the crawler reaches about 39 m against a 50 m target. With no reserve, the dry uphill reach is 74 m.
-- **The wet result is very sensitive to track friction under water.** At a friction coefficient of 0.45 instead of 0.6, wet uphill reach falls to about 3 m. This is the least certain input in the note.
-- About 0.40 kg of extra steel ballast would restore 50 m in the wet uphill case at a friction coefficient of 0.6. This is a design change and is left as a proposal (see `docs/REVIEW.md`).
-- Entering from the upstream end (downhill, with the flow) gives more than 50 m in both cases. On the way back the reel winds the tether in, and the crawler still has a 3.5 N margin reversing upstream.
-- Sprocket torque at the dry traction limit is 0.67 N·m per motor, including 85 % belt efficiency, within a 1 N·m worm gear motor. Top speed at 80 rpm is 0.29 m/s.
+- **R2 is met on paper, with a thin margin.** Submerged and driving upstream, the crawler reaches 52 m against a 50 m target (39 m in v0.1, before the 0.46 kg of added ballast). With no reserve, the dry uphill reach is 80 m.
+- **The wet result is very sensitive to track friction under water.** At a friction coefficient of 0.45 instead of 0.6, wet uphill reach falls to about 10 m. This is the least certain input in the note, and measuring it is TRL 4 work, on hold by Amish's instruction.
+- Entering from the upstream end (downhill, with the flow) gives more than 90 m in both cases, and is now operating guidance for flooded pipes (CVC-DDR-002). On the way back the reel winds the tether in, and the crawler still has a 4.6 N margin reversing upstream.
+- The plate now sits 8 mm above the track contact line (10 mm in v0.1), so ground clearance under the skid is 2 mm less.
+- Sprocket torque at the dry traction limit is 0.73 N·m per motor (0.67 N·m in v0.1), including 85 % belt efficiency, within a 1 N·m worm gear motor. Top speed at 80 rpm is 0.29 m/s.
 
-**R8.** On a 5 % grade the crawler needs 2.60 N to hold against 32.5 N of static friction, and the self-locking worm gears hold it with power off. The water drag on a stationary, submerged crawler in 0.5 m/s flow is 2.5 N against 16.3 N of static friction. For the 40 mm step, a conservative rule for a flat track limits the step to the idler radius, 35 mm; a friction bound, r(1 + sin(atan μ)), gives 53 mm at μ = 0.6 and 48 mm at μ = 0.4. **R8 step crossing is at risk.**
+**R8.** On a 5 % grade the crawler needs 2.83 N to hold against 35.4 N of static friction, and the self-locking worm gears hold it with power off. The water drag on a stationary, submerged crawler in 0.5 m/s flow is 2.5 N against 18.7 N of static friction. For the 40 mm step, a conservative rule for a flat track limits the step to the idler radius, 35 mm; a friction bound, r(1 + sin(atan μ)), gives 53 mm at μ = 0.6 and 48 mm at μ = 0.4. **R8 step crossing is at risk.**
 
 ## 5. Recovery pull (R3)
 
-With both tracks locked (worm gears self-locking) and 50 m of tether uphill of the crew, the pull to drag the crawler out is about 50 N. The 1 kN aramid member gives a factor of 20 on that pull; at the required factor of 5 it covers a stuck pull of 200 N. A crawler jammed by debris cannot be bounded by calculation. The crew should never use a vehicle to pull the tether.
+With both tracks locked (worm gears self-locking) and 50 m of tether uphill of the crew, the pull to drag the crawler out is about 53 N. The 1 kN aramid member gives a factor of 18.9 on that pull; at the required factor of 5 it covers a stuck pull of 200 N. A crawler jammed by debris cannot be bounded by calculation. The crew should never use a vehicle to pull the tether.
 
 ## 6. Power, tether and endurance (R9, R11)
 
@@ -124,21 +130,21 @@ R9 (4 h) is met. At 24 V the tether would lose 8.24 W, about six times more, whi
 
 ## 7. Laser ring profiling (R5)
 
-**The lens must see the ring at up to 76.5 degrees off axis.** With the camera 70 mm above the invert of a 900 mm pipe and the ring plane 200 mm ahead, the top of the pipe is 76.5 degrees off the camera axis (69.2 degrees in 600 mm, 46.6 degrees in 300 mm). A 160 degree lens on a 16:9 frame, as assumed at TRL 2, cannot see that far vertically. The design therefore uses a 180 degree circular fisheye whose image circle fits the 1296 px sensor height, at 0.139 degree per pixel (TRL 2 assumed 0.1 degree per pixel).
+**The lens must see the ring at up to 70.1 degrees off axis.** With the camera 70 mm above the invert of a 900 mm pipe and the ring plane 300 mm ahead, the top of the pipe is 70.1 degrees off the camera axis (60.3 degrees in 600 mm, 35.2 degrees in 300 mm). At the v0.1 distance of 200 mm it was 76.5 degrees in 900 mm pipe, where the fisheye is least accurate. A 160 degree lens on a 16:9 frame, as assumed at TRL 2, cannot see that far vertically. The design therefore uses a 180 degree circular fisheye whose image circle fits the 1296 px sensor height, at 0.139 degree per pixel (TRL 2 assumed 0.1 degree per pixel).
 
-The script simulates 400 ring measurements per case: it projects the wall points in the true (tilted, offset, yawed) light plane, adds lens and centroid errors, triangulates on the nominal plane as the software would, fits an ellipse and compares the result with the true pipe.
+The script simulates 2,000 ring measurements per case (400 in v0.1; the larger sample cuts the scatter of the 95th percentile from about 0.1 to about 0.03 percentage points): it projects the wall points in the true (tilted, offset, yawed) light plane, adds lens and centroid errors, triangulates on the nominal plane as the software would, fits an ellipse and compares the result with the true pipe.
 
-*Table 6. Profiling error, 95th percentile of 400 trials.*
+*Table 6. Profiling error, ring plane 300 mm ahead, 95th percentile of 2,000 trials.*
 
 | Pipe | Water depth | Mean diameter error | Vertical diameter error | Worst wall point | R5 (1 %) |
 | --- | --- | --- | --- | --- | --- |
-| 300 mm | 0 | 0.34 % | 0.35 % | 1.5 mm | Met |
-| 600 mm | 0 | 0.66 % | 0.85 % | 5.6 mm | Met |
-| 600 mm | 150 mm | 0.70 % | 0.87 % | 5.7 mm | Met, thin margin |
-| 900 mm | 0 | 1.12 % | 1.48 % | 13.6 mm | **Not met** |
-| 900 mm | 150 mm | 1.14 % | 1.59 % | 14.1 mm | **Not met** |
+| 300 mm | 0 | 0.23 % | 0.24 % | 1.4 mm | Met |
+| 600 mm | 0 | 0.43 % | 0.56 % | 4.1 mm | Met |
+| 600 mm | 150 mm | 0.48 % | 0.62 % | 4.2 mm | Met |
+| 900 mm | 0 | 0.71 % | 0.92 % | 9.0 mm | Met, thin margin |
+| 900 mm | 150 mm | 0.73 % | 0.97 % | 9.3 mm | Met, thin margin |
 
-Moving the ring plane to 300 mm ahead would bring the 900 mm vertical diameter error to 0.97 % (top of pipe at 70.1 degrees), at the cost of a longer boom. This is left as a proposal. A 5 % deflection limit is 30 mm in a 600 mm pipe, so even a 1.5 % error would still flag a failed pipe; R5 asks for a tighter, acceptance-grade number.
+For comparison, the same simulation with the v0.1 ring plane at 200 mm gives 1.49 % in 900 mm pipe with 150 mm of water (reported as 1.59 % from 400 trials in v0.1). The 300 mm plane was decided by Amish on 2026-09-25 (CVC-DDR-002) and costs a 100 mm longer boom. A 5 % deflection limit is 30 mm in a 600 mm pipe, so even a 1.5 % error would still flag a failed pipe; R5 asks for a tighter, acceptance-grade number.
 
 With the camera at 50 frames per second and the laser on alternate frames, the crawler takes 25 profiles per second: one every 6 mm at 0.15 m/s and every 12 mm at top speed (R5 asks for 0.1 m or less).
 
@@ -156,26 +162,26 @@ About 11.0 W is dissipated inside the hull, which has 0.095 m² of outer area. I
 
 ## 10. Cost (R12)
 
-The BOM has 13 lines, every one priced. The total is **$901** against `budget_usd` of $900, a margin of **-$1**. This is inside the pricing uncertainty, but by the letter of R12 it is not met.
+The BOM has 13 lines, every one priced. The total is **$906** against `budget_usd` of $900, a margin of **-$6** (crawler $426, tether, reel and surface kit $450, hardware and consumables $30). The larger ballast plate adds $3 and the longer laser boom $2. Amish accepted the v0.1 overrun of $1 as within pricing uncertainty (CVC-DDR-002); the further $5 is awaiting his confirmation. By the letter of R12 it is not met.
 
 ## 11. Results against requirements
 
-*Table 7. Every requirement in CVC-REQ-001 v0.3, with its calculated value and status.*
+*Table 7. Every requirement in CVC-REQ-001 v0.4, with its calculated value and status.*
 
 | ID | Requirement | Target | Calculated value | Status |
 | --- | --- | --- | --- | --- |
-| R1 | Fit | 300 to 900 mm pipe; 180 mm wide, 140 mm high or less | 170 x 106 mm; 50 mm or more clearance | Met |
-| R2 | Reach | 50 m in the design case with 20 % reserve | 39 m wet uphill; 52 m dry uphill; 85 to 158 m downhill | **Not met** |
-| R3 | Recover without entry | 1 kN, 5 times the worst stuck pull | 50 N locked-track pull; factor 20 | Met (jamming not calculable) |
+| R1 | Fit | 300 to 900 mm pipe; 180 mm wide, 140 mm high or less | 170 x 106 mm, 610 mm long; 50 mm or more clearance | Met |
+| R2 | Reach | 50 m in the design case with 20 % reserve | 52 m wet uphill; 56 m dry uphill; 92 to 178 m downhill; about 10 m at friction 0.45 | Met on paper, thin margin |
+| R3 | Recover without entry | 1 kN, 5 times the worst stuck pull | 53 N locked-track pull; factor 18.9 | Met (jamming not calculable) |
 | R4 | Video | 1080p, 25 fps or more; far wall of 900 mm pipe lit | 25 fps; 53 % link use; 370 lx | Met on paper (Pi 4 throughput not verifiable at TRL 3) |
-| R5 | Profile | 1 % of diameter; every 0.1 m or less | 0.35 % (300 mm), 0.87 % (600 mm), 1.59 % (900 mm); 6 mm spacing | **Not met at 900 mm**; met at 300 and 600 mm |
+| R5 | Profile | 1 % of diameter; every 0.1 m or less | 0.24 % (300 mm), 0.62 % (600 mm), 0.97 % (900 mm); 6 mm spacing | Met on paper (thin margin at 900 mm) |
 | R6 | Locate | 1 % or 0.2 m; pitch and roll 1 degree | 0.26 mm encoder resolution; slack and slip unknown | Not verifiable at TRL 3 |
-| R7 | Water and silt | 150 mm at 0.5 m/s; IP68 to 1 m | Holds with 2.5 N drag against 16.3 N; fully submerged in the design case | At risk (IP68 not verifiable at TRL 3) |
-| R8 | Climb | Hold on 5 % unpowered; 40 mm step | Hold: 2.60 N against 32.5 N; step 35 to 53 mm | At risk (step) |
+| R7 | Water and silt | 150 mm at 0.5 m/s; IP68 to 1 m | Holds with 2.5 N drag against 18.7 N; fully submerged in the design case | At risk (IP68 not verifiable at TRL 3) |
+| R8 | Climb | Hold on 5 % unpowered; 40 mm step | Hold: 2.83 N against 35.4 N; step 35 to 53 mm | At risk (step) |
 | R9 | Endurance | 4 h or more | 6.4 h nominal; 5.1 h derated | Met |
-| R10 | Portable | 25 kg kit, 10 kg per case; setup 10 min | 17.6 kg; heaviest case 6.3 kg | Met on mass; setup time not verifiable at TRL 3 |
+| R10 | Portable | 25 kg kit, 10 kg per case; setup 10 min | 18.1 kg; heaviest case 6.3 kg | Met on mass; setup time not verifiable at TRL 3 |
 | R11 | Electrical and laser safety | 48 V DC, fused, cutoff, stop; Class 2 | 48 V, 2 A and 10 A fuses, 1.5 A cutoff; 11 µW at the pupil | Met by design |
-| R12 | Affordable | $900 or less | $901 | **Not met** (by $1) |
+| R12 | Affordable | $900 or less | $906 | **Not met** (by $6; $1 accepted by Amish as pricing uncertainty) |
 | R13 | Open and repairable | Common parts, pluggable joints, open formats | Design review | Met by design |
 
-Summary: 3 not met (R2, R5 at 900 mm, R12), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 7 met on paper (R1, R3, R4, R9, R10, R11, R13).
+Summary: 1 not met (R12), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 9 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R13), of which R2 and R5 have thin margins. In v0.1, R2 and R5 were not met.

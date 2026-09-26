@@ -96,12 +96,12 @@ context = [Part("Culvert, 600 mm ID, sectioned", keep_far_half(pipe), "#C8CDD3")
 if __name__ == "__main__":
     render_all(
         parts, project="CulvertCrawl", title="Tethered culvert crawler concept", dwg_no="CVC-DWG-010", date="2026-09-25",
-        key_figures=["Fits 300 to 900 mm (12 to 36 in) pipe; 510 x 170 x 106 mm crawler",
-                     "5.3 kg; 2.66 kg net submerged; 0.15 m/s survey speed",
-                     "Laser ring 200 mm ahead; 0.35 / 0.87 / 1.59 % of D (300/600/900)",
-                     "60 m tether, 48 V DC; reach 52 m dry, 39 m wet uphill (R2 not met)",
-                     "28 W crawler loads; 6.4 h per charge (CVC-CAL-001)",
-                     "Parts $901 against the $900 budget (indicative)"],
+        key_figures=["Fits 300 to 900 mm (12 to 36 in) pipe; 610 x 170 x 106 mm crawler",
+                     "5.8 kg; 3.05 kg net submerged; 0.15 m/s survey speed",
+                     "Laser ring 300 mm ahead; 0.24 / 0.62 / 0.97 % of D (300/600/900)",
+                     "60 m tether, 48 V DC; reach 56 m dry, 52 m wet uphill",
+                     "28 W crawler loads; 6.4 h per charge (CVC-CAL-001 v0.2)",
+                     "Parts $906 against the $900 budget (indicative)"],
         cut_exclude=("Tether, 60 m hybrid, with strain relief", "Tether reel, slip ring, payout counter",
                      "Surface control box (LiFePO4, 48 V boost)", "Operator gamepad"),
         context=context,

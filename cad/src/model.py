@@ -34,10 +34,10 @@ PARAMS = {
     "dome_r": 30.0,
     "led_r_out": 44.0, "led_r_in": 32.0, "led_t": 8.0,
     # laser ring projector (item 7)
-    "ring_d": 200.0,            # ring plane ahead of the camera optical center (dome center)
+    "ring_d": 300.0,            # ring plane ahead of the camera optical center (dome center); 200 at CAL-001 v0.1, 300 by DDR-002
     "boom_r": 9.0, "head_r": 13.0, "head_l": 26.0,
     # ballast skid plate (item 8): steel
-    "ballast": (210.0, 80.0, 12.0), "ballast_z0": 10.0,
+    "ballast": (230.0, 80.0, 14.0), "ballast_z0": 8.0,   # 210 x 80 x 12 at z0 10 before DDR-002 (+0.46 kg)
     # tether (item 9)
     "tether_od": 7.0, "relief_l": 30.0, "relief_r": 11.0,
     # surface kit (items 10, 11)

@@ -39,6 +39,8 @@ Requirements not met or at risk:
 
 ### Proposed, awaiting Amish
 
+Status update: items 1 to 7 were decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-001). Items 8 and 9 had no recommendation and stay Proposed, awaiting Amish.
+
 1. **Budget.** Options: (a) raise `budget_usd` from $800 to $900; (b) cut to $800 by shortening the tether to 30 m and dropping the slip ring (surface box rides on the reel and talks to the laptop over Wi-Fi), which reduces reach to about 25 m and adds a radio link; (c) keep $800 and treat the surface kit as shared equipment costed separately. Recommendation: (a), because reach and a wired link are central to the pitch. `project.yaml` is unchanged.
 2. **Pipe range.** Keep 300 to 900 mm (R5 at risk at 900 mm) or narrow to 300 to 600 mm (R5 met throughout). Recommendation: keep 300 to 900 mm and test the 900 mm case early at TRL 3.
 3. **Surface battery.** A 12.8 V LiFePO4 battery with a 48 V boost (about $90) or the portfolio's SwapCell pack (48 V class, about $370, needs a CAN host heartbeat). Recommendation: LiFePO4 for the prototype, SwapCell-compatible input as a later option.
@@ -110,9 +112,9 @@ Decided by Amish, 2026-09-25, go with recommendation: budget $900; pipe range 30
 1. Output format first (PACP-style log, FHWA ratings or deflection report); no recommendation was made.
 2. First partner user group; not named (partners are picked per area later).
 3. Removable laser boom; no recommendation was made.
-4. **New, R2:** options are (a) add about 0.40 kg of ballast (restores 50 m wet uphill on paper at friction 0.6, but not at 0.45); (b) redefine the design case as entering from the upstream end; (c) accept a shorter reach in flooded pipes. Recommendation: (a) plus (b) as operating guidance; submerged track friction needs measuring once Amish lifts the TRL 4 hold.
-5. **New, R5:** options are (a) move the ring plane to 300 mm ahead (0.97 % at 900 mm, 100 mm longer boom); (b) narrow acceptance-grade profiling to 300 to 600 mm and report 900 mm as screening; (c) tilt the camera up. Recommendation: (a).
-6. **New, R12:** accept $901 as within pricing uncertainty, or trim $1 or more. Recommendation: accept and revisit when real quotes exist.
+4. **New, R2:** Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002; applied in the session below). Options were (a) add about 0.40 kg of ballast (restores 50 m wet uphill on paper at friction 0.6, but not at 0.45); (b) redefine the design case as entering from the upstream end; (c) accept a shorter reach in flooded pipes. Recommendation: (a) plus (b) as operating guidance; submerged track friction needs measuring once Amish lifts the TRL 4 hold.
+5. **New, R5:** Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002; applied in the session below). Options were (a) move the ring plane to 300 mm ahead (0.97 % at 900 mm, 100 mm longer boom); (b) narrow acceptance-grade profiling to 300 to 600 mm and report 900 mm as screening; (c) tilt the camera up. Recommendation: (a).
+6. **New, R12:** Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). Options were: accept $901 as within pricing uncertainty, or trim $1 or more. Recommendation: accept and revisit when real quotes exist.
 
 ### Safety concerns
 
@@ -129,3 +131,50 @@ None found. `build-log/` holds only its README and `.gitkeep`; `firmware/` and `
 ### Recommended next step
 
 TRL 4 is on hold by Amish's instruction. Next, Amish decides items 1 to 6 above; if 4 or 5 are accepted, a TRL 3 revision updates the model, the CAL note and the drawing to Rev P2. For the record only, TRL 4 would need: a submerged track friction and drawbar test on silt, a tank test of the sealed hull and shaft seals to 1 m, a laser ring calibration in 300, 600 and 900 mm reference pipes, a Pi 4 frame-rate and encoder load test, a test report (TST, `environment: lab`) and build log entries.
+
+## Session 2026-09-25: recommendations accepted
+
+On 2026-09-25 Amish wrote: "i accept all your recommendations, go with them across all repos." This session applied that instruction at TRL 3 and recorded it in CVC-DDR-002 (`docs/decisions/0002-recommendations-accepted.md`). TRL 4 remains on hold.
+
+### Decisions applied and what changed
+
+| Item | Decision | Before | After |
+| --- | --- | --- | --- |
+| R2 reach | Decided by Amish, 2026-09-25: go with recommendation. Add ballast; upstream entry in flooded pipes as operating guidance | Ballast 210 x 80 x 12 mm, 1.67 kg; crawler 5.31 kg, 2.66 kg net submerged; wet uphill reach 39 m | Ballast 230 x 80 x 14 mm, 2.13 kg, 8 mm above the contact line; crawler 5.77 kg, 3.05 kg net; wet uphill reach 52 m (about 10 m at friction 0.45) |
+| R5 at 900 mm | Decided by Amish, 2026-09-25: go with recommendation. Ring plane 300 mm ahead | Ring 200 mm ahead; crawler 510 mm long; 1.59 % at 900 mm | Ring 300 mm ahead; crawler 610 mm long; 0.97 % at 900 mm (0.62 % at 600 mm, 0.24 % at 300 mm) |
+| R12 cost | Decided by Amish, 2026-09-25: go with recommendation. Accept $1 over as pricing uncertainty; revisit with real quotes | $901 | $906 after the two changes above (ballast +$3, boom +$2); `budget_usd` stays 900 |
+
+Files changed: `cad/src/model.py` (and STEP and STL re-exported), `cad/src/sheets.py` and CVC-DWG-001 Rev P1 to Rev P2, `cad/src/concept_media.py` and all of `media/`, `docs/04-calcs/sizing.py`, `results.csv` and CVC-CAL-001 v0.1 to v0.2 (Monte Carlo now 2,000 trials), `bom/bom.csv` and `bom/bom-notes.md`, CVC-PRB-001, CVC-PRC-001 and CVC-REQ-001 v0.3 to v0.4, CVC-DDR-001 v0.1 to v0.2, new CVC-DDR-002, `README.md` (numbers and the four write-up sections), `project.yaml` (DDR-002 added to the evidence list only), and `docs/pdf/`. Other knock-on numbers: kit 17.6 to 18.1 kg; sprocket torque 0.67 to 0.73 N·m; recovery pull 50 to 53 N (factor 18.9).
+
+The README gained "Concept rationale", "Burning platform", "Where it could be used" and "What sparked the idea". The inspiration point is Florida DOT Standard Specifications Section 430 (Rev 12-7-07), which requires laser-profile video inspection of new pipe of 48 in or less but lets short cross drains be inspected from each end.
+
+### Requirement status (CVC-CAL-001 v0.2)
+
+| ID | Status | Key number |
+| --- | --- | --- |
+| R12 Cost | **Not met** | $906 against $900; $1 accepted by Amish, $5 awaiting Amish |
+| R7 Water | At risk | IP68 not verifiable at TRL 3; holds in the flow (2.5 N drag against 18.7 N) |
+| R8 Climb | At risk | Hold met; 40 mm step against a 35 to 53 mm limit |
+| R6 Locate | Not verifiable at TRL 3 | Slack and slip unknown |
+| R2 Reach | Met on paper, thin margin | 52 m wet uphill; about 10 m if submerged track friction is 0.45 |
+| R5 Profile | Met on paper, thin margin at 900 mm | 0.24 / 0.62 / 0.97 % at 300 / 600 / 900 mm |
+| R1, R3, R4, R9, R10, R11, R13 | Met on paper | 170 x 106 x 610 mm; 53 N pull, factor 18.9; 25 fps; 6.4 h; 18.1 kg; 48 V fused |
+
+### Still awaiting Amish
+
+1. Output format first (PACP-style log, FHWA ratings or deflection report); no recommendation was made.
+2. First partner user group; not named.
+3. Removable laser boom; no recommendation was made. It matters more now that the boom overhangs the tracks by about 300 mm.
+4. **New:** the $5 added by the ballast and boom changes ($906 against $900). Recommendation: accept on the same basis as the first $1 and revisit with real quotes.
+
+### Cross-repo actions
+
+None. No decision in this repo needs another repo to change.
+
+### Safety
+
+Unchanged. The heavier crawler raises the locked-track recovery pull to 53 N, still a factor of 18.9 on the 1 kN tether member; never tie the tether to a vehicle. The longer boom puts the laser 300 mm ahead of the tracks, so keep the Class 2 rule of switching the laser off out of the pipe.
+
+### TRL 4
+
+TRL 4 remains on hold by Amish's instruction. Decided but on hold: measuring submerged track friction and drawbar pull on silt, calibrating the ring in 300, 600 and 900 mm reference pipes, and getting real supplier quotes. `trl: 3` and `trl_target: 3` are unchanged.
