@@ -3,9 +3,9 @@ doc_id: CVC-REQ-001
 title: CulvertCrawl requirements
 project: CulvertCrawl
 doc_type: Requirements
-version: "0.4"
+version: "0.5"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -25,11 +25,15 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.5"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: Budget approved by Amish
 ---
 
 # CulvertCrawl requirements
 
-These requirements were checked by calculation at TRL 3 in CVC-CAL-001 v0.2 (`docs/04-calcs/01-sizing.md`). After the design changes Amish accepted on 2026-09-25 (CVC-DDR-002: 0.46 kg more ballast and the laser ring plane moved to 300 mm ahead), R2 and R5 are met on paper with thin margins, and only R12 is not met (by $6, of which Amish accepted $1 as within pricing uncertainty). Targets are still to be validated with users (see CVC-PRB-001). The budget in R12 and the pipe range in R1 and R5 were decided by Amish on 2026-09-25 (CVC-DDR-001). The status column is a calculated estimate, not a measurement.
+These requirements were checked by calculation at TRL 3 in CVC-CAL-001 v0.3 (`docs/04-calcs/01-sizing.md`). After the design changes Amish accepted on 2026-09-25 (CVC-DDR-002: 0.46 kg more ballast and the laser ring plane moved to 300 mm ahead), R2 and R5 are met on paper with thin margins, and R12 is met since Amish approved a $910 budget on 2026-09-26 to cover the $906 priced BOM (CVC-DDR-002). No requirement is not met. Targets are still to be validated with users (see CVC-PRB-001). The pipe range in R1 and R5 was decided by Amish on 2026-09-25 (CVC-DDR-001); the R12 budget was first set on 2026-09-25 (CVC-DDR-001) and raised to $910 on 2026-09-26 (CVC-DDR-002). The status column is a calculated estimate, not a measurement.
 
 The **design case** used throughout is a straight 600 mm (24 in) corrugated steel culvert, 50 m long, on a 5 % slope, with a wet silt invert and up to 150 mm of water flowing at 0.5 m/s. Unless stated, the crawler enters at the outlet and drives uphill against the flow, the worst direction. In 150 mm of water the 106 mm crawler is fully submerged. As operating guidance (CVC-DDR-002), crews should enter flooded pipes from the upstream end where access allows; the design case keeps the worst direction.
 
@@ -48,12 +52,12 @@ The **design case** used throughout is a straight 600 mm (24 in) corrugated stee
 | R9 | Endurance | 4 h or more of mixed driving and profiling per charge | Energy budget | Met (6.4 h nominal, 5.1 h derated) |
 | R10 | Portable and quick | Whole kit 25 kg or less, no single case over 10 kg, carried by two people in one trip; set up from vehicle to driving in 10 min or less | Mass estimate; setup sequence | Met on mass (18.1 kg; heaviest case 6.3 kg); setup time not verifiable at TRL 3 |
 | R11 | Electrical and laser safety | Tether and crawler 48 V DC nominal (below the 60 V DC extra-low-voltage limit), fused, with overcurrent cutoff and an emergency stop at the surface; laser Class 2 or lower under IEC 60825-1 | Design review | Met by design (10 A and 2 A fuses, 1.5 A cutoff) |
-| R12 | Affordable | Full kit (crawler, 60 m tether, reel, surface box) $900 or less in parts, operator laptop excluded (decided by Amish, 2026-09-25) | Priced BOM (`bom/bom.csv`) | **Not met** ($906, $6 over). Amish accepted the first $1 as within pricing uncertainty, to revisit with real quotes (CVC-DDR-002); the $5 added by the DDR-002 ballast and boom is awaiting Amish |
+| R12 | Affordable | Full kit (crawler, 60 m tether, reel, surface box) $910 or less in parts, operator laptop excluded (budget approved by Amish, 2026-09-26; was $900) | Priced BOM (`bom/bom.csv`) | Met ($906, $4 under). Prices are indicative, to revisit with real quotes |
 | R13 | Open and repairable | Common parts; every tether and module joint pluggable; open file formats (MP4 video, CSV profiles, JSON observation log with PACP-style codes) | Design review | Met by design |
 
 ## Requirements not met or at risk
 
-- **R12 is not met by $6** ($906 against $900). Amish accepted the $1 overrun at CVC-CAL-001 v0.1 as within pricing uncertainty (CVC-DDR-002); the ballast plate and longer boom he approved add $5, which is awaiting Amish (recommendation: accept on the same basis and revisit with real quotes).
+- **R12 is met** ($906 against $910). It was not met by $6 against the former $900 budget; Amish set the budget to $910 on 2026-09-26 to cover the priced BOM (CVC-DDR-002).
 - **R2 (reach) is met on paper with a thin margin.** With the ballast plate enlarged to 2.13 kg (was 1.67 kg), the fully submerged crawler reaches 52 m driving uphill against 0.5 m/s flow (was 39 m). The result is very sensitive to track friction under water: at 0.45 it falls to about 10 m. Measuring that friction is TRL 4 work and is on hold. Entering flooded pipes from the upstream end is now operating guidance.
 - **R5 at 900 mm is met on paper with a thin margin.** With the ring plane 300 mm ahead (was 200 mm), the top of a 900 mm pipe is 70.1 degrees off the camera axis (was 76.5 degrees) and the vertical diameter error is 0.97 % (was 1.59 %).
 - **R7 and R8 are at risk:** seals (IP68) and the 40 mm step cannot be settled on paper.

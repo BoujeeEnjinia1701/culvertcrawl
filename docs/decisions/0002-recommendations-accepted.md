@@ -3,9 +3,9 @@ doc_id: CVC-DDR-002
 title: CulvertCrawl recommendations accepted
 project: CulvertCrawl
 doc_type: Design decision record
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,12 +13,16 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.2"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: "Budget set to $910 to cover the priced BOM: decided by Amish, 2026-09-26; item 7 closed; R12 met"
 ---
 
 # 0002: Recommendations accepted
 
 - **Date:** 2026-09-25
-- **Status:** accepted (items 1 to 3); items 4 to 7 remain proposed, awaiting Amish
+- **Status:** accepted (items 1 to 3; item 7 decided 2026-09-26); items 4 to 6 remain proposed, awaiting Amish
 
 ## Context
 
@@ -55,7 +59,11 @@ These stay **Proposed, awaiting Amish**:
 4. **Output format first** (PACP-style observation log, FHWA condition ratings or a deflection report). No recommendation was made.
 5. **First partner user group** for field trials. Not named; partners are picked per area later.
 6. **Removable laser boom** for tight or bent pipes. No recommendation was made. The question matters more now that the boom overhangs the tracks by about 300 mm.
-7. **New: the $5 added by items 1 and 2.** The priced BOM is now $906, $6 over the $900 budget. Decision 3 accepted only the original $1. Recommendation: accept the $906 total on the same basis (indicative prices, revisit with real quotes). `budget_usd` is not changed.
+7. **New: the $5 added by items 1 and 2.** The priced BOM is now $906, $6 over the $900 budget. Decision 3 accepted only the original $1. Recommendation: accept the $906 total on the same basis (indicative prices, revisit with real quotes). `budget_usd` is not changed. Decided by Amish, 2026-09-26: see Budget, 2026-09-26.
+
+### Budget, 2026-09-26
+
+On 2026-09-26 Amish wrote: "i approve all the budget items." Budget set to $910 to cover the priced BOM: decided by Amish, 2026-09-26. The priced BOM is $906 (`bom/bom.csv`, 13 lines), so `budget_usd` in `project.yaml` moves from 900 to 910, item 7 is closed and R12 moves from not met to met ($4 under). `docs/04-calcs/sizing.py` reads the budget from `project.yaml` and was rerun. CVC-CAL-001 v0.3, CVC-REQ-001 v0.5, CVC-PRC-001 v0.5, CVC-PRB-001 v0.5, `README.md`, `bom/bom-notes.md` and the concept blueprint key figure were updated, and `media/` was regenerated. Requirement status is now 0 not met, 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6) and 10 met on paper.
 
 ## Consequences
 

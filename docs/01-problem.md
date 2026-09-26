@@ -3,9 +3,9 @@ doc_id: CVC-PRB-001
 title: CulvertCrawl problem statement
 project: CulvertCrawl
 doc_type: Problem statement
-version: "0.4"
+version: "0.5"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -25,6 +25,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.5"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: Budget approved by Amish ($910, CVC-DDR-002)
 ---
 
 # CulvertCrawl problem statement
@@ -64,7 +68,7 @@ The missing piece is a measurement, not only a picture. Plastic pipe acceptance 
 
 ## Constraints
 
-- Garage-buildable prototype, $900 USD in parts (`project.yaml`; raised from $800 by Amish on 2026-09-25, CVC-DDR-001). The priced BOM is $906 (CVC-CAL-001 v0.2); Amish accepted the first $1 over as within pricing uncertainty (CVC-DDR-002), and the further $5 from the ballast and boom changes is awaiting Amish.
+- Garage-buildable prototype, $910 USD in parts (`project.yaml`; raised from $800 to $900 by Amish on 2026-09-25, CVC-DDR-001, and to $910 on 2026-09-26 to cover the priced BOM, CVC-DDR-002). The priced BOM is $906 (CVC-CAL-001 v0.3).
 - No person enters the pipe at any stage, including recovery of a stuck crawler.
 - Safe extra-low voltage only in the tether and crawler (48 V DC or less), and an eye-safe laser (Class 2 or lower) so the tool can be used by non-specialists.
 - Carried by two people from a vehicle to a ditch in one trip, and set up in minutes.

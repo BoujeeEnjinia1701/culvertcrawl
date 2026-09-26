@@ -144,5 +144,5 @@ cost: crawler (items 1 to 8),426,USD
 cost: hardware and consumables (item 13),30,USD
 BOM lines,13,
 BOM total,906,USD
-budget_usd,900,USD
-margin (budget minus total),-6,USD
+budget_usd,910,USD
+margin (budget minus total),4,USD

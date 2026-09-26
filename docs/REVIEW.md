@@ -165,7 +165,7 @@ The README gained "Concept rationale", "Burning platform", "Where it could be us
 1. Output format first (PACP-style log, FHWA ratings or deflection report); no recommendation was made.
 2. First partner user group; not named.
 3. Removable laser boom; no recommendation was made. It matters more now that the boom overhangs the tracks by about 300 mm.
-4. **New:** the $5 added by the ballast and boom changes ($906 against $900). Recommendation: accept on the same basis as the first $1 and revisit with real quotes.
+4. **New:** the $5 added by the ballast and boom changes ($906 against $900). Recommendation: accept on the same basis as the first $1 and revisit with real quotes. Decided by Amish, 2026-09-26: budget set to $910 (CVC-DDR-002 v0.2).
 
 ### Cross-repo actions
 
@@ -178,3 +178,25 @@ Unchanged. The heavier crawler raises the locked-track recovery pull to 53 N, st
 ### TRL 4
 
 TRL 4 remains on hold by Amish's instruction. Decided but on hold: measuring submerged track friction and drawbar pull on silt, calibrating the ring in 300, 600 and 900 mm reference pipes, and getting real supplier quotes. `trl: 3` and `trl_target: 3` are unchanged.
+
+## Session 2026-09-26: sources strengthened
+
+Amish asked for the weaker sources in the README to be fixed. Every link kept or added was fetched and checked against the claim (World Bank flood assessment, FHWA culvert program, WSDOT injunction page, FDOT Section 430, GFDRR Cambodia). No controlled document changed; `docs/01-problem.md` did not share any of the replaced claims.
+
+| Where | Old source | New source |
+| --- | --- | --- |
+| United Kingdom and northern Europe row | Uncited | Row narrowed to the United Kingdom: over one million culverts and outfalls with blockage and sedimentation risk (CIRIA and Environment Agency *Culvert, screen and outfall manual*, GOV.UK page), plus Devon County Council culvert guidance |
+| India row | Uncited | Press Information Bureau (Government of India) PMGSY factsheet: about 783,700 km completed by August 2025; maintenance payments tied to the condition of cross-drainage works |
+| East Africa row | World Bank 2022 flood assessment, plus an uncited claim about silted culverts on unpaved roads | Row renamed Mali and Sudan, the countries the same World Bank source names, and limited to what it states |
+| Burning platform, culvert sentence | Uncited claim that many failures start at culverts | Softened to a statement that culverts are among the buried links in those networks |
+
+The inspiration event (FDOT Standard Specifications Section 430) is unchanged; its link was rechecked against the quoted clause. No budget change.
+
+## Session 2026-09-26: budget approved
+
+On 2026-09-26 Amish wrote: "i approve all the budget items." The open budget item (the $5 from the ballast and boom changes) is decided: budget set to $910 to cover the priced BOM, recorded in CVC-DDR-002 v0.2.
+
+- `project.yaml`: `budget_usd` 900 to 910. The priced BOM is $906, so the figure covers it with $4 to spare.
+- R12: **not met** ($6 over $900) to **met**. Requirement status is now 0 not met, 2 at risk (R7, R8), 1 not verifiable (R6) and 10 met on paper.
+- `docs/04-calcs/sizing.py` reads the budget from `project.yaml` and was rerun (`results.csv` updated); CVC-CAL-001 v0.3, CVC-REQ-001 v0.5, CVC-PRC-001 v0.5, CVC-PRB-001 v0.5, `README.md` and `bom/bom-notes.md` quote the new figure. The concept blueprint key figure now reads "against the $910 budget", and `media/` was regenerated.
+- Still awaiting Amish: output format, first partner user group, removable laser boom.

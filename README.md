@@ -2,7 +2,7 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827)
 
-**Area:** Situational Field Hardware · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** $900 USD · **Difficulty:** 4 of 5
+**Area:** Situational Field Hardware · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** $910 USD · **Difficulty:** 4 of 5
 
 Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
 
@@ -18,7 +18,7 @@ Open hardware fits that gap. Every part is a hobby or industrial catalog item, a
 
 ## Burning platform
 
-Flooding reaches road networks through their drainage. A World Bank global assessment of 2,564 cities in 177 countries found that a 1-in-100-year flood directly exposes 14.7 % of urban roads, yet causes 44.8 % of simulated trips to fail as the damage cascades through the network ([He, Rentschler and Avner, World Bank, 2022](https://blogs.worldbank.org/en/developmenttalk/mobility-and-resilience-global-assessment-flood-impacts-urban-road-networks)). Culverts are the small, buried links where many of those failures start, and most are never seen from inside.
+Flooding reaches road networks through their drainage. A World Bank global assessment of 2,564 cities in 177 countries found that a 1-in-100-year flood directly exposes 14.7 % of urban roads, yet causes 44.8 % of simulated trips to fail as the damage cascades through the network ([He, Rentschler and Avner, World Bank, 2022](https://blogs.worldbank.org/en/developmenttalk/mobility-and-resilience-global-assessment-flood-impacts-urban-road-networks)). Culverts are among the small, buried links in those networks, and their condition is hard to see from outside.
 
 Public money is now flowing into culverts faster than owners can survey them. The United States set aside $200 million a year for fiscal years 2022 to 2026, $1 billion in all, for the National Culvert Removal, Replacement, and Restoration Grant program ([FHWA](https://highways.dot.gov/iija/fact-sheets/national-culvert-removal-replacement-and-restoration-grants-culvert-aop-program)). In Washington State alone, a federal court injunction issued in March 2013 requires the state to correct fish-barrier culverts under its highways; by June 2026 WSDOT had corrected 200 of them and reopened 705 miles (about 1,130 km) of salmon and steelhead habitat, with more funding still needed ([WSDOT](https://wsdot.wa.gov/construction-planning/protecting-environment/fish-passage/federal-court-injunction-fish-passage)). Choosing which pipes to fix first depends on knowing their condition.
 
@@ -40,10 +40,10 @@ Public money is now flowing into culverts faster than owners can survey them. Th
 | Country or region | Why it matters there |
 | --- | --- |
 | United States | Florida DOT requires laser-profile video inspection of new pipe of 48 in or less and replaces pipe deflected 5 % or more ([FDOT Section 430](https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/specifications/by-year/2008/july-2008/workbook/ss4300000.pdf?sfvrsn=33cb5ec7_0)); Washington State is correcting fish-barrier culverts under a federal injunction ([WSDOT](https://wsdot.wa.gov/construction-planning/protecting-environment/fish-passage/federal-court-injunction-fish-passage)) |
-| United Kingdom and northern Europe | Old towns carry many culverted urban streams under roads and buildings, where a blocked or collapsed section causes local flooding and entry is a confined-space task |
+| United Kingdom | More than one million culverts and outfalls, which can completely restrict flow, are often costly to maintain and need ongoing assessment for sedimentation and blockage ([CIRIA and Environment Agency, *Culvert, screen and outfall manual*, via GOV.UK](https://www.gov.uk/flood-and-coastal-erosion-risk-management-research-reports/culvert-screens-and-outfall-manual)); councils such as Devon note that culverting can worsen flood risk and raise maintenance needs ([Devon County Council](https://www.devon.gov.uk/floodriskmanagement/land-drainage-consent/culvert-guidance/)) |
 | Cambodia and Southeast Asia | The World Bank and GFDRR support climate-resilient rural road programs because flooded rural roads cut critical access for rural communities ([GFDRR](https://www.gfdrr.org/en/feature-story/pathway-resilient-rural-roads-cambodia)) |
-| India | Monsoon rains test the cross-drainage culverts on a very large rural road network, maintained by district engineers with small budgets |
-| East Africa | Unpaved rural roads depend on small culverts that silt up in the rains; the World Bank assessment found trip failure rates above 50 % in some African countries even in lower-intensity floods ([World Bank, 2022](https://blogs.worldbank.org/en/developmenttalk/mobility-and-resilience-global-assessment-flood-impacts-urban-road-networks)) |
+| India | About 783,700 km of rural road had been completed under the Pradhan Mantri Gram Sadak Yojana by August 2025, and contractors are now paid for maintenance on the condition of each road's cross-drainage works among other assets ([Press Information Bureau, Government of India](https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc2025914636101.pdf)) |
+| Mali and Sudan | The World Bank global assessment found that more than half of simulated urban trips fail in these countries even in floods of lower intensity, so small drainage links matter early ([World Bank, 2022](https://blogs.worldbank.org/en/developmenttalk/mobility-and-resilience-global-assessment-flood-impacts-urban-road-networks)) |
 
 ## What sparked the idea
 
@@ -72,7 +72,7 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 - Raspberry Pi 4 in the crawler
 - Surface control box with LiFePO4 battery, 48 V boost and emergency stop
 
-The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $906 against the $900 budget Amish set on 2026-09-25: Amish accepted the earlier $1 overrun as within pricing uncertainty, and the heavier ballast and longer laser boom he approved add $5 (see the [review note](docs/REVIEW.md)).
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $906 against the $910 budget Amish set on 2026-09-26 to cover the priced BOM (see the [review note](docs/REVIEW.md)).
 
 ## Repository layout
 
@@ -91,6 +91,12 @@ The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative to
 ## Documentation
 
 Controlled documents follow the portfolio [documentation standard](.kit/STANDARDS.md). Each carries a document ID (CVC-PRC-001 for the precis), a version and a revision history. Branded PDFs are built with `python .kit/render.py` and attached to GitHub Releases when a document is tagged, for example `CVC-PRC-001/v1.0`.
+
+## Credits
+
+Designed by Amish Chadha. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for roles. To cite this design, use [CITATION.cff](CITATION.cff) (GitHub shows it as "Cite this repository").
+
+AI assistance (Claude) was used to accelerate concept renders, prototype documentation and first-pass sizing calculations. Design direction and all decisions are Amish Chadha's, recorded in this repository's decision records (`docs/decisions/`).
 
 ## Licenses
 

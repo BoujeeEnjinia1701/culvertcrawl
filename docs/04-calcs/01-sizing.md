@@ -3,9 +3,9 @@ doc_id: CVC-CAL-001
 title: CulvertCrawl sizing calculations
 project: CulvertCrawl
 doc_type: Calculation note
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,11 +17,15 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002). Ballast 230 x 80 x 14 mm; ring plane 300 mm ahead; 2,000 Monte Carlo trials; results rerun
+- version: "0.3"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: Budget approved by Amish ($900 to $910, CVC-DDR-002); script rerun; R12 not met to met
 ---
 
 # CulvertCrawl sizing calculations
 
-Version 0.2 applies the design changes Amish accepted on 2026-09-25 (CVC-DDR-002): the ballast plate grows from 210 x 80 x 12 mm to 230 x 80 x 14 mm (1.67 to 2.13 kg), and the laser ring plane moves from 200 to 300 mm ahead of the camera. On paper the crawler now fits every target pipe, reaches 52 m in the wet uphill design case (was 39 m), profiles 300 to 900 mm pipe to within 1 % of diameter (0.97 % at 900 mm, was 1.59 %), runs 6.4 h per charge and stays within safe extra-low voltage. R2 and R5 are met with thin margins. One requirement is **not met**: R12 (priced BOM $906 against the $900 budget; Amish accepted the first $1 as within pricing uncertainty). R7 (IP68) and R8 (40 mm step) are at risk, and R6 (distance) cannot be verified until hardware exists, which is TRL 4 work and on hold by Amish's instruction.
+Version 0.2 applies the design changes Amish accepted on 2026-09-25 (CVC-DDR-002): the ballast plate grows from 210 x 80 x 12 mm to 230 x 80 x 14 mm (1.67 to 2.13 kg), and the laser ring plane moves from 200 to 300 mm ahead of the camera. On paper the crawler now fits every target pipe, reaches 52 m in the wet uphill design case (was 39 m), profiles 300 to 900 mm pipe to within 1 % of diameter (0.97 % at 900 mm, was 1.59 %), runs 6.4 h per charge and stays within safe extra-low voltage. R2 and R5 are met with thin margins. Version 0.3 records the budget Amish approved on 2026-09-26: `budget_usd` is $910, which covers the $906 priced BOM, so R12 is now met and no requirement is not met. R7 (IP68) and R8 (40 mm step) are at risk, and R6 (distance) cannot be verified until hardware exists, which is TRL 4 work and on hold by Amish's instruction.
 
 Every number in this note is printed by `docs/04-calcs/sizing.py` (run from the repo root: `python docs/04-calcs/sizing.py`), which also writes `docs/04-calcs/results.csv`. The script reads its dimensions from `cad/src/model.py` (`PARAMS`) and the cost from `bom/bom.csv`, so the note, the model and the BOM share one source. All values are first-principles estimates; nothing here is measured.
 
@@ -162,7 +166,7 @@ About 11.0 W is dissipated inside the hull, which has 0.095 m² of outer area. I
 
 ## 10. Cost (R12)
 
-The BOM has 13 lines, every one priced. The total is **$906** against `budget_usd` of $900, a margin of **-$6** (crawler $426, tether, reel and surface kit $450, hardware and consumables $30). The larger ballast plate adds $3 and the longer laser boom $2. Amish accepted the v0.1 overrun of $1 as within pricing uncertainty (CVC-DDR-002); the further $5 is awaiting his confirmation. By the letter of R12 it is not met.
+The BOM has 13 lines, every one priced. The total is **$906** against `budget_usd` of $910, a margin of **$4** (crawler $426, tether, reel and surface kit $450, hardware and consumables $30). The larger ballast plate adds $3 and the longer laser boom $2. Against the former $900 budget the margin was -$6; Amish accepted the v0.1 overrun of $1 as within pricing uncertainty (CVC-DDR-002) and on 2026-09-26 set the budget to $910 to cover the priced BOM. R12 is met.
 
 ## 11. Results against requirements
 
@@ -181,7 +185,7 @@ The BOM has 13 lines, every one priced. The total is **$906** against `budget_us
 | R9 | Endurance | 4 h or more | 6.4 h nominal; 5.1 h derated | Met |
 | R10 | Portable | 25 kg kit, 10 kg per case; setup 10 min | 18.1 kg; heaviest case 6.3 kg | Met on mass; setup time not verifiable at TRL 3 |
 | R11 | Electrical and laser safety | 48 V DC, fused, cutoff, stop; Class 2 | 48 V, 2 A and 10 A fuses, 1.5 A cutoff; 11 µW at the pupil | Met by design |
-| R12 | Affordable | $900 or less | $906 | **Not met** (by $6; $1 accepted by Amish as pricing uncertainty) |
+| R12 | Affordable | $910 or less | $906 | Met (budget approved by Amish, 2026-09-26; not met against $900 in v0.2) |
 | R13 | Open and repairable | Common parts, pluggable joints, open formats | Design review | Met by design |
 
-Summary: 1 not met (R12), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 9 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R13), of which R2 and R5 have thin margins. In v0.1, R2 and R5 were not met.
+Summary: 0 not met, 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 10 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R12, R13), of which R2 and R5 have thin margins. In v0.2, R12 was not met against the former $900 budget; in v0.1, R2 and R5 were not met.

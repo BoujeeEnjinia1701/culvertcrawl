@@ -23,7 +23,7 @@ pitch: >-
   Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
 problem: >-
   Small culverts and drains are hard to inspect without confined-space entry.
-budget_usd: 900
+budget_usd: 910
 difficulty: 4  # 1 easiest, 5 hardest
 hero_image: media/hero.png
 licenses:

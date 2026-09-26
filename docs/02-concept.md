@@ -3,9 +3,9 @@ doc_id: CVC-PRC-001
 title: CulvertCrawl design precis
 project: CulvertCrawl
 doc_type: Design precis
-version: "0.4"
+version: "0.5"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -25,11 +25,15 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.5"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: Budget approved by Amish ($910, CVC-DDR-002); cost figures restated against it
 ---
 
 # CulvertCrawl design precis
 
-CulvertCrawl is a small tracked crawler, about 610 x 170 x 106 mm and 5.8 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 300 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001 v0.2) give 6.4 h per charge, 52 m of reach when the crawler drives submerged and uphill against the flow, profile accuracy of 0.24 %, 0.62 % and 0.97 % of diameter in 300, 600 and 900 mm pipe, and a parts cost of $906 against the $900 budget. Reach and 900 mm accuracy are met with thin margins after the design changes Amish accepted on 2026-09-25 (CVC-DDR-002); the cost is $6 over (R12). All numbers are calculated estimates, not measurements.
+CulvertCrawl is a small tracked crawler, about 610 x 170 x 106 mm and 5.8 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 300 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001 v0.3) give 6.4 h per charge, 52 m of reach when the crawler drives submerged and uphill against the flow, profile accuracy of 0.24 %, 0.62 % and 0.97 % of diameter in 300, 600 and 900 mm pipe, and a parts cost of $906 against the $910 budget. Reach and 900 mm accuracy are met with thin margins after the design changes Amish accepted on 2026-09-25 (CVC-DDR-002), and the cost is within the budget Amish approved on 2026-09-26 (R12 met). All numbers are calculated estimates, not measurements.
 
 ![Hero render](../media/hero.png)
 
@@ -137,7 +141,7 @@ The longer boom puts the cone mirror about 300 mm ahead of the tracks, which mat
 | Crawler (items 1 to 8) | $426 | Ballast +$3 and boom +$2 (CVC-DDR-002) |
 | Tether, reel and surface kit (items 9 to 12) | $450 | |
 | Hardware and consumables (item 13) | $30 | |
-| **Total** | **$906** | R12 ($900) not met by $6; $1 accepted by Amish as pricing uncertainty, $5 awaiting Amish |
+| **Total** | **$906** | R12 ($910) met, $4 under |
 
 The laptop is excluded.
 
@@ -151,11 +155,11 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - **Laser ring ahead of a fixed fisheye camera,** Class 2, 520 nm, rather than structured light, stereo or a pan-tilt head. Decided by Amish, 2026-09-25: go with recommendation.
 - **Processing on the laptop.** The Pi streams video and sensor data; ring extraction and reports run on the operator's laptop. Decided by Amish, 2026-09-25: go with recommendation.
 - **Pipe range 300 to 900 mm.** Kept, with the 900 mm case checked at TRL 3 (R5 not met at 900 mm). Decided by Amish, 2026-09-25: go with recommendation.
-- **Budget $900.** Decided by Amish, 2026-09-25: go with recommendation.
+- **Budget $900.** Decided by Amish, 2026-09-25: go with recommendation. Superseded: budget set to $910 to cover the priced BOM, decided by Amish, 2026-09-26 (CVC-DDR-002).
 - **Removable laser boom.** Proposed, awaiting Amish (no recommendation was made at TRL 2).
 - **Heavier ballast plate for reach (R2).** 230 x 80 x 14 mm steel, 2.13 kg (was 1.67 kg), plus the operating guidance to enter flooded pipes from the upstream end. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). Measuring submerged track friction is TRL 4 work, on hold.
 - **Ring plane 300 mm ahead of the camera (R5).** Was 200 mm; the boom is 100 mm longer. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002).
-- **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is proposed, awaiting Amish (recommendation: accept on the same basis).
+- **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is covered by the $910 budget Amish approved on 2026-09-26 (CVC-DDR-002).
 - **Camera at 50 frames per second with a circular fisheye.** A TRL 3 engineering choice so that video (R4) and profiling (R5) are both met from one camera; recorded in CVC-CAL-001.
 
 ## Safety
@@ -178,7 +182,6 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - Is a Class 2 laser bright enough near a sunlit mouth or on a reflective wall, or does the camera need a narrowband filter?
 - Can a Pi 4 capture at 50 frames per second and run the H.264 and JPEG encoders at once?
 - Should the laser boom be removable for tight or bent pipes, now that it overhangs the tracks by about 300 mm? Proposed, awaiting Amish (no recommendation made).
-- Is the $5 overrun from the ballast and boom changes ($906 against $900) accepted on the same basis as the first $1? Proposed, awaiting Amish; recommendation: accept and revisit with real quotes.
 - Which outputs do users need first: a PACP-style observation log, FHWA condition ratings, or a deflection report? Proposed, awaiting Amish.
 
 ## References
