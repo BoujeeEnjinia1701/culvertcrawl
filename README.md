@@ -6,9 +6,9 @@
 
 Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
 
-![CulvertCrawl concept](media/hero.png)
+![CulvertCrawl: tethered pipe inspection crawler with laser ring profiling, product render](media/render-hero.png)
 
-[Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [Review note](docs/REVIEW.md)
+[Exploded render](media/render-exploded.png) · [Detail render](media/render-detail.png) · [Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [Review note](docs/REVIEW.md)
 
 ## Concept rationale
 

@@ -200,3 +200,35 @@ On 2026-09-26 Amish wrote: "i approve all the budget items." The open budget ite
 - R12: **not met** ($6 over $900) to **met**. Requirement status is now 0 not met, 2 at risk (R7, R8), 1 not verifiable (R6) and 10 met on paper.
 - `docs/04-calcs/sizing.py` reads the budget from `project.yaml` and was rerun (`results.csv` updated); CVC-CAL-001 v0.3, CVC-REQ-001 v0.5, CVC-PRC-001 v0.5, CVC-PRB-001 v0.5, `README.md` and `bom/bom-notes.md` quote the new figure. The concept blueprint key figure now reads "against the $910 budget", and `media/` was regenerated.
 - Still awaiting Amish: output format, first partner user group, removable laser boom.
+
+## Session 2026-09-26: product appearance model and photoreal renders
+
+Amish chose this repo for the first batch of product renders on 2026-09-26. This session adds an appearance model for photoreal renders; no controlled document, the BOM or `cad/src/model.py` changed.
+
+### What was added
+
+- `cad/src/product_model.py`: `product_parts()`, `TITLE` and `RENDER_VIEWS` (hero, exploded and a crawler-only detail view). It imports `PARAMS` and `track_contact_height()` from `model.py` and rebuilds each part from the same parameters and placements as `crawler_parts()` and `surface_parts()`, so every main dimension and interface is kept. Appearance detail added:
+  - Crawler hull: clear-anodized body with filleted edges and machined side flutes, teal anodized lid on its lip with a recessed name plate and accent bar, four stainless lid screws, a hex pressure-test plug, a lit status light, a dome clamp flange and a hex tether gland.
+  - Tracks: lugged rubber belts over toothed sprockets and dished idlers with hub caps; slotted inner side plates.
+  - Front end: fisheye camera module and lens behind a clear acrylic dome shell (bore cut through the front wall so the camera shows), black LED bezel with eight lit emitters.
+  - Laser projector: clear boom with its cable visible inside, clamp collar at the dome, knurled diode housing, clear exit window around the cone mirror and an end cap.
+  - Internals split for colour: worm gear motor cans, gearboxes and shafts; carrier board, Pi 4 layer with ports and heatsink, and the converter block.
+  - Ballast skid plate with filleted edges, flush countersunk bolts and skid grooves; ribbed tether bend restrictor.
+  - Surface kit: reel with lightened flanges, wound tether, teal A-frame with feet, crank and knob, slip ring and lead, payout counter with wheel and lit readout; rugged control case with parting groove, ribs, latches, handle, emergency stop, connectors, fuse holders and a lit tether power light; gamepad with sticks and buttons.
+  - Context (hero only): a short cut-open section of 600 mm corrugated steel culvert, the laser ring lit on its wall (illustrative), a ground patch and the shared 1.75 m clay mannequin standing at the reel.
+- `README.md`: hero image now points to `media/render-hero.png`, with an exploded render link. The render files are produced separately.
+
+### Where the appearance model differs from model.py
+
+Each item is **Proposed, awaiting Amish**.
+
+1. **Laser head exit window and end cap.** `model.py` shows the cone mirror bare beyond a 26 mm diode housing. The appearance model splits the head into a 14 mm housing, a clear window around the mirror and a 3 mm end cap, so the head ends about 3 mm further forward (x 429 instead of 426 in the crawler frame). The ring plane stays 300 mm ahead of the dome center. Recommendation: adopt the window and cap in `model.py` at the next model revision; a bare mirror would foul in a pipe.
+2. **Dome bore and dome shell.** `model.py` has no bore in the front wall and a solid dome. The appearance model cuts a bore of dome radius less 1 mm and makes the dome a 3 mm shell. Recommendation: adopt; it matches the BOM (60 mm dome bore, acrylic dome port).
+3. **Status light on the lid.** Not in the BOM or `model.py`. Recommendation: keep for the render only unless Amish wants a power indicator; if kept, it is a small sealed panel LED under item 13.
+4. **Payout counter bracket.** `model.py` leaves the payout counter unsupported beside the reel; the appearance model adds two small tubes from the frame. Recommendation: adopt in `model.py`.
+5. **Control case position (render layout only).** Moved from beside the reel to the front left of the scene so the hero stays compact; no size changed. Recommendation: keep as a render layout.
+6. **Track belt build-up.** The belt outer surface is 3 mm inside the `model.py` track radius and the lugs make up the 35 mm radius, so the contact line and track height are unchanged. No action needed.
+
+### Status
+
+This is an appearance model only: no tolerances, no fabrication detail and nothing beyond TRL 3. `trl: 3` and `trl_target: 3` are unchanged, and TRL 4 remains on hold.
