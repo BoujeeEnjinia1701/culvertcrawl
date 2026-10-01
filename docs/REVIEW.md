@@ -238,3 +238,61 @@ This is an appearance model only: no tolerances, no fabrication detail and nothi
 - Kit 1.5.0 synced: STANDARDS v1.5 (sections 12 to 15: product renders, storefront images and image quality, public release, authorship and signing), `.kit/cards.py`, `.kit/image_qc.py`, `.kit/release_gate.py`, issue templates, and the `/render-product` and `/release` commands. `CLAUDE.md` now matches `.kit/CLAUDE.md`.
 - Every `media/render-*.png` recaptioned from its original render with the new layout: the title, concept label and repository sit in a band above the render and the view note in a band below it, each line wrapped to the image width, so no text overlaps other text or the render or runs off the image. `media/card.png` and `media/social-preview.png` regenerated with the same rules.
 - `python .kit/image_qc.py` and `python .kit/release_gate.py` pass. trl stays 3.
+
+## Session 2026-09-30: kit 1.7.0, design for construction and prototype build plan
+
+Amish approved the build plan format on 2026-09-30 and asked for it in every repo, with outstanding decisions kept in a separate design decisions register. He also wrote: "If you are realising that the design cannot be built as per concept - fix the design assumptions to match and be physically feasible as you draw the illustrations."
+
+### What was done
+
+- Kit 1.7.0 installed (`.kit/`, `.claude/commands/`); `CLAUDE.md` replaced with `.kit/CLAUDE.md`.
+- `cad/src/model.py`: rewritten as a constructable model with every component and fixing, and 94 constructability checks (`python cad/src/model.py --check`); all pass. STEP and STL regenerated (`cad/step/`, `cad/stl/`).
+- `docs/decisions/0003-design-for-construction.md` (CVC-DDR-003 v0.1, Draft): every change, made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review.
+- `bom/bom.csv`: 15 lines (new line 14, front bezel; new line 15, side plates and small made parts; lines 1 to 11 and 13 respecified); `bom/bom-notes.md` updated.
+- `docs/04-calcs/sizing.py` and CVC-CAL-001 v0.4: masses from model volumes, fin shadow in the profiling Monte Carlo, reel and box masses from the model; `results.csv` rerun. CVC-REQ-001 v0.6, CVC-PRC-001 v0.6 and CVC-PRB-001 (budget line) updated to match.
+- `cad/drawings/CVC-DWG-001` Rev P3 (`cad/src/sheets.py`); concept media regenerated (`cad/src/concept_media.py`, blueprint CVC-DWG-010 Rev P2, `media/model.glb` and `viewer.html`).
+- `cad/src/build_plan_media.py` (uses `.kit/build_views.py`): two overview pictures, 19 making sketches (`cad/drawings/CVC-DWG-101` to `119`), 15 joint close-ups, 23 step pictures, a hull hole layout and a wiring diagram, all in `docs/05-build-plan/`.
+- `docs/05-build-plan.md` (CVC-BLD-001 v0.1) and `docs/06-design-decisions.md` (CVC-DEC-001 v0.1).
+- `project.yaml`: `design_state: constructable`; DDR-003, the build plan and the register added to `trl_evidence`. `README.md`: links line and a "Building the prototype" section (the README has no Safety section, so it sits after Key components).
+
+### Design changes made for construction (CVC-DDR-003)
+
+1. Hull machined from a block with a 12 mm inner rim carrying the lid O-ring and ten M4 screws; flush lid (the 3 mm lip is gone); 10 mm front wall; drive pads, idler bosses and floor pads inside.
+2. Track belts 36 mm (were 40 mm) with the same outer edge, so a 3 mm side plate fits between hull and belt; width 170 mm unchanged.
+3. Made side plates on both sides, held by the gearbox screws, the idler axle and three screws into the ballast plate; they tie the hull to the ballast plate.
+4. Gearboxes moved 2 mm inside the rear wall, output faces on the drive pads with two screws each; lip seals in counterbores in the side walls, kept in by the side plates.
+5. Idler axles: M6 shoulder bolts into blind tapped bosses in the hull walls.
+6. Electronics tray on four floor pads; Pi on spacers; a deck on standoffs carries the driver, converters and IMU (the converter no longer sits inside the motor cans).
+7. Camera bore in the front wall and a printed camera mount.
+8. Machined front bezel (BOM line 14) clamps the dome flange on an O-ring and holds eight stock LEDs, potted; LED and laser leads through a potted hole in the front wall.
+9. Laser boom carried on an 8 mm clear acrylic fin bolted to a bracket on the ballast plate's nose (it no longer touches the dome).
+10. Laser head with a clear window tube and end cap holding the cone mirror (the appearance model's 2026-09-26 proposal, item 1); ring plane still 300 mm ahead.
+11. Ballast plate 255 x 88 x 14 mm (was 230 x 80 x 14 mm with a bent lip), square nose, tapped for the side plates, fin bracket and eye bolt; 2.45 kg.
+12. Tether strength member tied to an M8 eye bolt in the ballast plate; M10 penetrator raised to 77 mm (was on the camera axis) to clear the gearboxes.
+13. Reel: two 6 mm aluminium side frames on spacer tubes, flanged bearings, hollow axle, PVC drum clamped between HDPE flanges by tie rods, shaft hubs, crank, knob brake, slip ring anchor bracket.
+14. Payout counter on a bar clamped in the front spacer (review item 4 of 2026-09-26), with a USB encoder reader.
+15. Surface box drop-in chassis (base board, four posts, panel); battery on its side, strapped; the case is not drilled.
+
+### Key results (CVC-CAL-001 v0.4)
+
+- Crawler 6.63 kg (was 5.77 kg), 3.77 kg net submerged; kit 22.2 kg, heaviest item 7.8 kg. R10 met.
+- Wet uphill reach 75 m (was 52 m); 23 m if submerged track friction is 0.45. Sprocket torque 0.84 N·m against the 1 N·m rating. Recovery pull 59 N, factor 17.
+- Profiling with the fin's shadow: 0.25, 0.57 and 0.97 % of diameter at 300, 600 and 900 mm. R5 met, thin margin at 900 mm.
+- **R12 not met:** BOM $1,034 against $910 ($124 over). `budget_usd` unchanged.
+- Status: 1 not met (R12), 2 at risk (R7, R8), 1 not verifiable (R6), 9 met on paper.
+
+### Proposed, awaiting Amish
+
+All open items are in the design decisions register (`docs/06-design-decisions.md`): accepting CVC-DDR-003; the budget (recommend raising `budget_usd` to about $1,040); the removable boom (two bolts for the prototype); the fin shadow; the heavier crawler; and the items still open from earlier (output format, first partner, appearance-model differences).
+
+### Stale media
+
+The design changed visibly, so these are out of date and are made on Amish's Mac, not here: `media/render-hero.png`, `media/render-exploded.png`, `media/render-detail.png`, `media/card.png`, `media/social-preview.png`, and the appearance model `cad/src/product_model.py` (concept lid lip, 88 mm LED ring, bare cone, tube reel frame). The render files referenced by the README are not present in this copy.
+
+### Safety
+
+No change to the safety case. The recovery pull now goes to an eye bolt in the steel plate instead of the cable seal. The build plan adds safety stops for the battery, the 48 V tether, the laser and the leak test.
+
+### Recommended next step
+
+Amish reviews CVC-DDR-003 and the register (especially the budget). TRL 4 remains on hold; `trl` and `trl_target` stay at 3.

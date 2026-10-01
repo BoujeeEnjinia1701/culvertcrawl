@@ -19,6 +19,10 @@ trl_evidence:
   - cad/drawings/CVC-DWG-001.svg
   - cad/drawings/CVC-DWG-001.pdf
   - bom/bom.csv
+  - docs/decisions/0003-design-for-construction.md
+  - docs/05-build-plan.md
+  - docs/06-design-decisions.md
+design_state: constructable   # STANDARDS section 18; CVC-DDR-003
 shortlisted: false
 pitch: >-
   Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.

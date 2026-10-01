@@ -1,4 +1,4 @@
-"""CulvertCrawl sizing calculations, CVC-CAL-001 v0.2.
+"""CulvertCrawl sizing calculations, CVC-CAL-001 v0.4 (constructable design, CVC-DDR-003).
 
 Run from the repo root:  python docs/04-calcs/sizing.py
 Prints every number quoted in docs/04-calcs/01-sizing.md and writes docs/04-calcs/results.csv.
@@ -15,7 +15,13 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "cad/src"))
-from model import PARAMS as P, track_contact_height  # noqa: E402
+import warnings  # noqa: E402
+warnings.filterwarnings("ignore")
+from model import PARAMS as P, track_contact_height, made_masses, build_components, surface_masses  # noqa: E402
+
+MM = made_masses()                                      # kg, from the model volumes
+CC = build_components()
+VOL = {c.name: c.shape.volume / 1e6 for c in CC.values()}   # L
 
 G = 9.81
 RHO_W = 1000.0
@@ -67,8 +73,8 @@ A = {
 head("1 Geometry and fit (R1)")
 L, Wd, H = P["hull_l"], P["hull_w"], P["hull_h"]
 width = 2 * (P["track_y"] + P["track_w"] / 2)
-height = max(P["hull_z0"] + H + P["lid_t"] + 3.0, P["cam_z"] + P["led_r_out"])
-front = L / 2 + P["ring_d"] + 12
+height = max(P["hull_z0"] + H + P["lid_t"] + 2.8, P["cam_z"] + P["bezel"][1])
+front = L / 2 + P["ring_d"] + 13
 rear = -L / 2 - 12 - P["relief_l"] - 16
 out("crawler width over tracks", width, "mm", "{:.0f}")
 out("crawler height over lid screws", height, "mm", "{:.0f}")
@@ -95,19 +101,21 @@ out("normal load factor, 900 mm", k_wedge[900], "", "{:.3f}")
 
 # ---------------------------------------------------------------- 2 mass and buoyancy
 head("2 Mass and buoyancy (R7, R10)")
-hull_v = (L * Wd * H - (L - 2 * P["wall"]) * (Wd - 2 * P["wall"]) * (H - P["wall"])
-          + (L + 2 * P["lid_lip"]) * (Wd + 2 * P["lid_lip"]) * P["lid_t"]) / 1e6  # L of metal
-bl, bw, bt = P["ballast"]
-ballast_v = bl * bw * bt / 1e6 + 20 * bw * bt * 0.6 / 1e6
+ballast_v = VOL["Ballast skid plate"]
+laser_made = sum(MM[k] for k in ("Fin bracket", "Boom fin (clear acrylic)", "Boom tube (clear acrylic)", "Diode housing",
+                                  "Window tube (clear acrylic)", "End cap"))
 mass = {
-    "Hull and lid (6061, 2.70 kg/L)": hull_v * 2.70,
-    "Tracks, sprockets, side plates": 1.00,
+    "Hull body and lid (model volume, 6061)": MM["Hull body"] + MM["Hull lid"],
+    "Track belts, sprockets, idlers": 1.00,
+    "Side plates (model volume, 6061)": MM["Side plate, left"] + MM["Side plate, right"],
     "Worm gear motors (2 x 0.35 kg)": 0.70,
     "Electronics stack": 0.20,
-    "Camera, dome, LED ring": 0.15,
-    "Laser projector and boom": 0.11,   # 300 mm ring plane (DDR-002); 0.10 kg at 200 mm
-    "Ballast plate (steel, 7.85 kg/L)": ballast_v * 7.85,
-    "Fasteners, glands, seals, strain relief": 0.40,
+    "Electronics tray and camera mount (model volume)": MM["Electronics tray"] + MM["Camera mount"],
+    "Camera, dome, LEDs": 0.15,
+    "Front bezel (model volume, 6061)": MM["Front bezel"],
+    "Laser projector: fin, boom, head (model) plus diode and mirror 0.02 kg": laser_made + 0.02,
+    "Ballast plate (model volume, steel 7.85 kg/L)": MM["Ballast skid plate"],
+    "Fasteners, eye bolt, seals, penetrator, strain relief": 0.45,
 }
 for k, v in mass.items():
     out(f"mass: {k}", v, "kg")
@@ -115,24 +123,30 @@ m = out("crawler mass", sum(mass.values()), "kg")
 W = m * G
 hull_env = (L * Wd * (H + P["lid_t"])) / 1e6
 dome = (2 / 3) * math.pi * (P["dome_r"] / 10) ** 3 / 1000
-boom_v = (math.pi * P["boom_r"] ** 2 * (P["ring_d"] - P["dome_r"]) + math.pi * P["head_r"] ** 2 * P["head_l"]) / 1e6
+# sealed boom and head displace their outside volume; the fin, bracket and side plates their material
+boom_exposed = L / 2 + P["ring_d"] - 40 - P["boom_root"]     # boom root to the diode housing
+head_len = 40 + 13                                                # housing, window and end cap
+boom_v = (math.pi * P["boom_r"] ** 2 * boom_exposed + math.pi * P["head_r"] ** 2 * head_len) / 1e6
 tracks_v = 1.00 / 1.8           # rubber and aluminium, mean density about 1.8 kg/L
 motors_v = 0.0                  # inside the hull envelope
-led_v = math.pi * (P["led_r_out"] ** 2 - P["led_r_in"] ** 2) * P["led_t"] / 1e6
+front_v = VOL["Front bezel"] + VOL["LEDs on 10 mm boards (8), potted"]
+plates_v = VOL["Side plate, right"] + VOL["Side plate, left"] + VOL["Boom fin (clear acrylic)"] + VOL["Fin bracket"]
 misc_v = 0.05
-vol = out("displaced volume, fully submerged", hull_env + dome + boom_v + tracks_v + ballast_v + led_v + misc_v, "L")
+vol = out("displaced volume, fully submerged", hull_env + dome + boom_v + tracks_v + ballast_v + front_v + plates_v + misc_v, "L")
 m_net = out("net submerged mass", m - vol * RHO_W / 1000, "kg")
 out("fraction of dry normal load left when submerged", m_net / m, "", "{:.2f}")
 submerged_depth = A["water_depth"] - fit[600][0]
 out("design case: water depth above track contact line (600 mm)", submerged_depth, "mm", "{:.0f}")
 out("design case: crawler fully submerged (1 = yes)", float(submerged_depth >= height), "", "{:.0f}")
 tether_kg = A["tether_g_per_m"] * A["tether_len"] / 1000
-kit = {"Crawler": m, "Tether, 60 m": tether_kg, "Reel, frame, slip ring, counter": 2.5,
-       "Surface box (LiFePO4 2.5 kg, case 3.0 kg, electronics 0.8 kg)": 6.3, "Gamepad": 0.2}
+SM = surface_masses()
+kit = {"Crawler": m, "Tether, 60 m": tether_kg, "Reel, frame, slip ring, counter (made parts from the model)": SM["reel"],
+       "Surface box (case 3.0 kg, LiFePO4 2.5 kg, electronics, chassis from the model)": SM["box"], "Gamepad": SM["gamepad"]}
 for k, v in kit.items():
     out(f"kit mass: {k}", v, "kg", "{:.1f}")
 out("whole kit mass", sum(kit.values()), "kg", "{:.1f}")
-out("heaviest single item (reel with tether)", tether_kg + 2.5, "kg", "{:.1f}")
+out("reel with tether", tether_kg + SM["reel"], "kg", "{:.1f}")
+out("heaviest single item", max(tether_kg + SM["reel"], SM["box"], m), "kg", "{:.1f}")
 
 # ---------------------------------------------------------------- 3 traction and reach (R2, R8)
 head("3 Traction and reach (R2, R8)")
@@ -261,7 +275,25 @@ E = {"sigma_px": 0.3,        # random ring-center localization, 1 sigma
 rng = np.random.default_rng(7)
 
 
-def ring_sim(d, water=0.0, ring_d=P["ring_d"], trials=2000, n=720):
+def fin_shadow(d, ys, dz, cz, ring_d):
+    """True where the ray from the lens to a wall point passes through the boom fin (CVC-DDR-003).
+    The fin is 8 mm thick, from y = 0 to 8 mm, between x = 131 and 262 mm in the crawler frame, with
+    its lower edge rising from the contact line + 8 mm and its upper edge under the boom."""
+    xs = np.linspace(131.0, 262.0, 40)
+    xf = P["hull_l"] / 2
+    zbot = np.interp(xs, [131, 145, 262], [8.0, 8.0, P["cam_z"] - P["boom_r"]])
+    ztop = np.interp(xs, [131, 159, 262], [25.0, P["cam_z"] - P["boom_r"], P["cam_z"] - P["boom_r"]])
+    tz = track_contact_height(d)
+    hit = np.zeros(ys.shape, bool)
+    for x, zb_, zt_ in zip(xs, zbot, ztop):
+        t = (x - xf) / ring_d
+        y = t * ys
+        z = cz + t * dz - tz                          # crawler-frame height of the ray at this x
+        hit |= (y >= 0) & (y <= P["fin_t"]) & (z >= zb_) & (z <= zt_)
+    return hit
+
+
+def ring_sim(d, water=0.0, ring_d=P["ring_d"], trials=2000, n=720, fin=True):
     """Monte Carlo of one ring measurement in a round pipe. Returns 95th percentile errors (mm) of
     mean diameter, vertical diameter (deflection) and the worst single wall point."""
     R = d / 2
@@ -271,6 +303,9 @@ def ring_sim(d, water=0.0, ring_d=P["ring_d"], trials=2000, n=720):
     keep = z > water
     y, z = y[keep], z[keep]
     dz = z - cz
+    if fin:                                            # points hidden behind the boom fin
+        keep = ~fin_shadow(d, y, dz, cz, ring_d)
+        y, z, dz = y[keep], z[keep], dz[keep]
     rho = np.hypot(y, dz)
     psi = np.arctan2(dz, y)
     res = np.radians(deg_px)
@@ -323,6 +358,14 @@ for d in (300, 600, 900):
         out(f"{tag}: worst wall point error (95th pct)", ep, "mm", "{:.1f}")
 ed, ev, ep, top = ring_sim(900, A["water_depth"], ring_d=200.0)
 out("900 mm, water 150 mm, former 200 mm ring plane: vertical diameter error", ev / 900 * 100, "% of D", "{:.2f}")
+for d in (300, 900):
+    R_ = d / 2
+    ph = np.linspace(0, 2 * np.pi, 3600, endpoint=False)
+    yy, zz = R_ * np.sin(ph), R_ - R_ * np.cos(ph)
+    hid = fin_shadow(d, yy, zz - fit[d][1], fit[d][1], P["ring_d"])
+    out(f"{d} mm: share of the ring hidden by the boom fin", hid.mean() * 100, "%", "{:.1f}")
+ed, ev, ep, top = ring_sim(900, A["water_depth"], fin=False)
+out("900 mm, water 150 mm, without the fin (concept boom): vertical diameter error", ev / 900 * 100, "% of D", "{:.2f}")
 profiles_s = A["cam_fps"] / 2
 out("profiles per second (laser on alternate frames)", profiles_s, "1/s", "{:.0f}")
 out("profile spacing at 0.15 m/s", A["speed"] / profiles_s * 1000, "mm", "{:.0f}")
@@ -370,12 +413,12 @@ head("9 Cost (R12)")
 with open(ROOT / "bom/bom.csv") as f:
     rows = list(csv.DictReader(f))
 total = 0.0
-groups = {"crawler (items 1 to 8)": 0.0, "tether, reel and surface kit (items 9 to 12)": 0.0, "hardware and consumables (item 13)": 0.0}
+groups = {"crawler (items 1 to 8, 14, 15)": 0.0, "tether, reel and surface kit (items 9 to 12)": 0.0, "hardware and consumables (item 13)": 0.0}
 for r in rows:
     line = float(r["qty"]) * float(r["unit_cost_usd"])
     total += line
     n = int(r["item"].split()[0])
-    groups[list(groups)[0 if n <= 8 else 1 if n <= 12 else 2]] += line
+    groups[list(groups)[0 if (n <= 8 or n >= 14) else 1 if n <= 12 else 2]] += line
 for k, v in groups.items():
     out(f"cost: {k}", v, "USD", "{:.0f}")
 out("BOM lines", len(rows), "", "{:.0f}")

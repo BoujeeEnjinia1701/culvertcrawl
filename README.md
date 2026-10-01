@@ -8,7 +8,7 @@ Tethered tracked crawler with a camera, lights and laser ring profiling that mea
 
 ![CulvertCrawl: tethered pipe inspection crawler with laser ring profiling, product render](media/render-hero.png)
 
-[Exploded render](media/render-exploded.png) · [Detail render](media/render-detail.png) · [Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [Review note](docs/REVIEW.md)
+[Exploded render](media/render-exploded.png) · [Detail render](media/render-detail.png) · [Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [General arrangement (PDF)](cad/drawings/CVC-DWG-001.pdf) · [Calculations](docs/04-calcs/01-sizing.md) · [Prototype build plan](docs/05-build-plan.md) · [Design decisions](docs/06-design-decisions.md) · [Review note](docs/REVIEW.md)
 
 ## Concept rationale
 
@@ -57,7 +57,7 @@ Problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 ## Concept
 
-Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage. A 5.8 kg crawler drives into the pipe on a 60 m tether carrying 48 V DC and Ethernet; a laser ring projected 300 mm ahead of a fisheye camera gives a cross-section every 6 mm, from which the operator's laptop reports diameter, ovality and sediment depth against distance. The TRL 3 calculations ([CVC-CAL-001](docs/04-calcs/01-sizing.md)) give 6.4 h per charge, about 52 m of reach driving uphill in a flooded pipe, and profile accuracy within 1 % of diameter from 300 to 900 mm (0.97 % at 900 mm, a thin margin). The wet reach depends on track friction under water, which only a test can settle. All figures are calculated estimates.
+Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage. A 6.6 kg crawler drives into the pipe on a 60 m tether carrying 48 V DC and Ethernet; a laser ring projected 300 mm ahead of a fisheye camera gives a cross-section every 6 mm, from which the operator's laptop reports diameter, ovality and sediment depth against distance. The TRL 3 calculations ([CVC-CAL-001](docs/04-calcs/01-sizing.md)) give 6.4 h per charge, about 75 m of reach driving uphill in a flooded pipe, and profile accuracy within 1 % of diameter from 300 to 900 mm (0.97 % at 900 mm, a thin margin). The wet reach depends on track friction under water, which only a test can settle. All figures are calculated estimates.
 
 Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md) · Calculations: [docs/04-calcs/01-sizing.md](docs/04-calcs/01-sizing.md) · General arrangement: [cad/drawings/CVC-DWG-001.pdf](cad/drawings/CVC-DWG-001.pdf) · Model: [cad/src/model.py](cad/src/model.py)
 
@@ -72,7 +72,13 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 - Raspberry Pi 4 in the crawler
 - Surface control box with LiFePO4 battery, 48 V boost and emergency stop
 
-The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $906 against the $910 budget Amish set on 2026-09-26 to cover the priced BOM (see the [review note](docs/REVIEW.md)).
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $1,034 against the $910 budget: the parts that make the design buildable added $128, so a budget change is proposed, awaiting Amish (see the [design decisions register](docs/06-design-decisions.md)).
+
+## Building the prototype
+
+![CulvertCrawl crawler: every component pulled apart and numbered in build order](docs/05-build-plan/overview.png)
+
+The [prototype build plan](docs/05-build-plan.md) (CVC-BLD-001) shows, in pictures, how to make each component of the crawler, the tether reel and the surface box and put them together in 23 steps; nothing has been built yet. The hull, lid and front bezel are machined aluminium, the ballast plate is cut steel, the side plates, brackets, reel frames and box panel are cut from sheet and bar, the laser boom, fin and window are clear acrylic, and the motors, tracks, camera, electronics, tether and slip ring are bought. Writing the plan made the design buildable: a rim and pads inside the hull, side plates that tie the hull to the ballast plate, a bezel that clamps the dome, a fin that carries the laser boom, an eye bolt for the tether's strength member, a reel frame with bearings and a drop-in chassis for the surface box (CVC-DDR-003, open for Amish's review). Every picture is drawn from the model, and the model checks that each part touches what it should and clears what it should not.
 
 ## Repository layout
 
