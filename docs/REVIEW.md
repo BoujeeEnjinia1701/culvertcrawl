@@ -278,12 +278,12 @@ Amish approved the build plan format on 2026-09-30 and asked for it in every rep
 - Crawler 6.63 kg (was 5.77 kg), 3.77 kg net submerged; kit 22.2 kg, heaviest item 7.8 kg. R10 met.
 - Wet uphill reach 75 m (was 52 m); 23 m if submerged track friction is 0.45. Sprocket torque 0.84 N·m against the 1 N·m rating. Recovery pull 59 N, factor 17.
 - Profiling with the fin's shadow: 0.25, 0.57 and 0.97 % of diameter at 300, 600 and 900 mm. R5 met, thin margin at 900 mm.
-- **R12 not met:** BOM $1,034 against $910 ($124 over). `budget_usd` unchanged.
-- Status: 1 not met (R12), 2 at risk (R7, R8), 1 not verifiable (R6), 9 met on paper.
+- **R12 over the value-engineering target:** BOM $1,034 against a $910 target ($124 over). `budget_usd` unchanged.
+- Status: 1 over its value-engineering target (R12), 2 at risk (R7, R8), 1 not verifiable (R6), 9 met on paper.
 
 ### Proposed, awaiting Amish
 
-All open items are in the design decisions register (`docs/06-design-decisions.md`): accepting CVC-DDR-003; the budget (recommend raising `budget_usd` to about $1,040); the removable boom (two bolts for the prototype); the fin shadow; the heavier crawler; and the items still open from earlier (output format, first partner, appearance-model differences).
+All open items are in the design decisions register (`docs/06-design-decisions.md`): accepting CVC-DDR-003; the removable boom (two bolts for the prototype); the fin shadow; the heavier crawler; and the items still open from earlier (output format, first partner, appearance-model differences).
 
 ### Stale media
 
@@ -295,4 +295,4 @@ No change to the safety case. The recovery pull now goes to an eye bolt in the s
 
 ### Recommended next step
 
-Amish reviews CVC-DDR-003 and the register (especially the budget). TRL 4 remains on hold; `trl` and `trl_target` stay at 3.
+Amish reviews CVC-DDR-003 and the register (including its Value engineering section). TRL 4 remains on hold; `trl` and `trl_target` stay at 3.

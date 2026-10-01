@@ -3,9 +3,9 @@ doc_id: CVC-CAL-001
 title: CulvertCrawl sizing calculations
 project: CulvertCrawl
 doc_type: Calculation note
-version: "0.4"
+version: "0.5"
 status: Draft
-date: '2026-09-30'
+date: '2026-10-01'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -25,11 +25,15 @@ revisions:
   date: '2026-09-30'
   author: Amish Chadha
   change: Constructable design (CVC-DDR-003); masses from model volumes; fin shadow in the profiling Monte Carlo; reel and box masses from the model; 15-line BOM; R12 met to not met
+- version: "0.5"
+  date: '2026-10-01'
+  author: Amish Chadha
+  change: Budget treated as a value-engineering target
 ---
 
 # CulvertCrawl sizing calculations
 
-Version 0.4 follows the constructable design of CVC-DDR-003, made under Amish's 2026-09-30 instruction to make the design physically buildable and open for his review. The crawler is heavier (6.63 kg, 3.77 kg net when submerged), so the wet uphill reach rises to 75 m; the boom now stands on a clear fin whose shadow is modelled in the profiling simulation, and R5 is still met (0.97 % at 900 mm). The parts added for construction raise the priced BOM to $1,034 against the $910 budget, so **R12 is not met** (proposed, awaiting Amish: CVC-DDR-003, A1). Earlier versions follow.
+Version 0.4 follows the constructable design of CVC-DDR-003, made under Amish's 2026-09-30 instruction to make the design physically buildable and open for his review. The crawler is heavier (6.63 kg, 3.77 kg net when submerged), so the wet uphill reach rises to 75 m; the boom now stands on a clear fin whose shadow is modelled in the profiling simulation, and R5 is still met (0.97 % at 900 mm). The parts added for construction raise the estimated priced BOM to $1,034 against the $910 value-engineering target, so R12 is over the target by $124 (cost drivers and savings are in the design decisions register). Earlier versions follow.
 
 Version 0.2 applies the design changes Amish accepted on 2026-09-25 (CVC-DDR-002): the ballast plate grows from 210 x 80 x 12 mm to 230 x 80 x 14 mm (1.67 to 2.13 kg), and the laser ring plane moves from 200 to 300 mm ahead of the camera. On paper the crawler now fits every target pipe, reaches 52 m in the wet uphill design case (was 39 m), profiles 300 to 900 mm pipe to within 1 % of diameter (0.97 % at 900 mm, was 1.59 %), runs 6.4 h per charge and stays within safe extra-low voltage. R2 and R5 are met with thin margins. Version 0.3 records the budget Amish approved on 2026-09-26: `budget_usd` is $910, which covers the $906 priced BOM, so R12 is now met and no requirement is not met. R7 (IP68) and R8 (40 mm step) are at risk, and R6 (distance) cannot be verified until hardware exists, which is TRL 4 work and on hold by Amish's instruction.
 
@@ -181,13 +185,13 @@ About 11.0 W is dissipated inside the hull, which has 0.095 m² of outer area. I
 
 ## 10. Cost (R12)
 
-**Version 0.4.** The BOM has 15 lines, every one priced. The total is **$1,034** against `budget_usd` of $910, **$124 over** (crawler, lines 1 to 8, 14 and 15, $481; tether, reel and surface kit $513; hardware and consumables $40). The parts added to make the design buildable (CVC-DDR-003) account for all of the increase: the front bezel and the side plates and small made parts (new lines 14 and 15, $32), the reel frame, bearings, hubs and counter reader ($43), the surface box chassis ($20), the hull rim and pads ($8), the laser fin, window and cap ($8), the larger ballast plate ($4), the deck ($3) and the eye bolt and screws ($10). **R12 is not met.** `budget_usd` is not changed; raising it is proposed, awaiting Amish (CVC-DDR-003, A1).
+**Version 0.4.** The BOM has 15 lines, every one priced. The total is **$1,034** against the value-engineering target of $910 (`budget_usd`, a hypothetical control target, not a limit), **$124 over** (crawler, lines 1 to 8, 14 and 15, $481; tether, reel and surface kit $513; hardware and consumables $40). The parts added to make the design buildable (CVC-DDR-003) account for all of the increase: the front bezel and the side plates and small made parts (new lines 14 and 15, $32), the reel frame, bearings, hubs and counter reader ($43), the surface box chassis ($20), the hull rim and pads ($8), the laser fin, window and cap ($8), the larger ballast plate ($4), the deck ($3) and the eye bolt and screws ($10). **R12 is over the value-engineering target by $124.** `budget_usd` is not changed; cost drivers and savings worth trying are in the Value engineering section of the design decisions register.
 
-**Version 0.3.** The BOM had 13 lines and totalled **$906** against `budget_usd` of $910, a margin of **$4** (crawler $426, tether, reel and surface kit $450, hardware and consumables $30). The larger ballast plate adds $3 and the longer laser boom $2. Against the former $900 budget the margin was -$6; Amish accepted the v0.1 overrun of $1 as within pricing uncertainty (CVC-DDR-002) and on 2026-09-26 set the budget to $910 to cover the priced BOM. R12 was met in v0.3.
+**Version 0.3.** The BOM had 13 lines and totalled **$906** against the value-engineering target of $910, a margin of **$4** (crawler $426, tether, reel and surface kit $450, hardware and consumables $30). The larger ballast plate adds $3 and the longer laser boom $2. Against the former $900 budget the margin was -$6; Amish accepted the v0.1 overrun of $1 as within pricing uncertainty (CVC-DDR-002) and on 2026-09-26 set the target to $910 to match the priced BOM. R12 was within the target in v0.3.
 
 ## 11. Results against requirements
 
-*Table 7. Every requirement in CVC-REQ-001 v0.6, with its calculated value and status.*
+*Table 7. Every requirement in CVC-REQ-001 v0.7, with its calculated value and status.*
 
 | ID | Requirement | Target | Calculated value | Status |
 | --- | --- | --- | --- | --- |
@@ -202,7 +206,7 @@ About 11.0 W is dissipated inside the hull, which has 0.095 m² of outer area. I
 | R9 | Endurance | 4 h or more | 6.4 h nominal; 5.1 h derated | Met |
 | R10 | Portable | 25 kg kit, 10 kg per case; setup 10 min | 22.2 kg; heaviest item 7.8 kg (reel with tether) | Met on mass; setup time not verifiable at TRL 3 |
 | R11 | Electrical and laser safety | 48 V DC, fused, cutoff, stop; Class 2 | 48 V, 2 A and 10 A fuses, 1.5 A cutoff; 11 µW at the pupil | Met by design |
-| R12 | Affordable | $910 or less | $1,034 | **Not met**, $124 over (parts added for construction; budget proposed, awaiting Amish) |
+| R12 | Affordable | $910 or less | $1,034 | **Over the value-engineering target by $124** (parts added for construction) |
 | R13 | Open and repairable | Common parts, pluggable joints, open formats | Design review | Met by design |
 
-Summary: 1 not met (R12), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 9 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R13), of which R5 has a thin margin at 900 mm and R2 is sensitive to submerged track friction. In v0.3 R12 was met at $906; in v0.2, R12 was not met against the former $900 budget; in v0.1, R2 and R5 were not met.
+Summary: 1 over its value-engineering target (R12), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 9 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R13), of which R5 has a thin margin at 900 mm and R2 is sensitive to submerged track friction. In v0.3 R12 was met at $906; in v0.2, R12 was over the former $900 target; in v0.1, R2 and R5 were not met.

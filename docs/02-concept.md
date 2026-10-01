@@ -3,9 +3,9 @@ doc_id: CVC-PRC-001
 title: CulvertCrawl design precis
 project: CulvertCrawl
 doc_type: Design precis
-version: "0.6"
+version: "0.7"
 status: Draft
-date: '2026-09-30'
+date: '2026-10-01'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -33,11 +33,15 @@ revisions:
   date: '2026-09-30'
   author: Amish Chadha
   change: Constructable design (CVC-DDR-003); numbers from CVC-CAL-001 v0.4; build plan CVC-BLD-001 and design decisions register CVC-DEC-001
+- version: "0.7"
+  date: '2026-10-01'
+  author: Amish Chadha
+  change: Budget treated as a value-engineering target
 ---
 
 # CulvertCrawl design precis
 
-CulvertCrawl is a small tracked crawler, about 611 x 170 x 106 mm and 6.6 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 300 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001 v0.4) give 6.4 h per charge, 75 m of reach when the crawler drives submerged and uphill against the flow, profile accuracy of 0.25 %, 0.57 % and 0.97 % of diameter in 300, 600 and 900 mm pipe, and a parts cost of $1,034 against the $910 budget. On 2026-09-30 the design was made constructable (CVC-DDR-003, open for Amish's review): every part can now be made and fixed, which made the crawler heavier (better reach) and added $128 of parts, so R12 is not met and a budget change is proposed, awaiting Amish. The prototype build plan is CVC-BLD-001 (`docs/05-build-plan.md`); open decisions are in CVC-DEC-001 (`docs/06-design-decisions.md`). All numbers are calculated estimates, not measurements.
+CulvertCrawl is a small tracked crawler, about 611 x 170 x 106 mm and 6.6 kg, that drives into a 300 to 900 mm culvert on a 60 m tether while an operator watches live video on a laptop at the pipe mouth. A green laser ring projected onto the pipe wall 300 mm ahead of a fisheye camera gives a cross-section every 6 mm of travel, from which the software reports diameter, ovality (deflection) and sediment depth against distance. The TRL 3 calculations (CVC-CAL-001 v0.5) give 6.4 h per charge, 75 m of reach when the crawler drives submerged and uphill against the flow, profile accuracy of 0.25 %, 0.57 % and 0.97 % of diameter in 300, 600 and 900 mm pipe, and an estimated parts cost of $1,034 against the $910 value-engineering target. On 2026-09-30 the design was made constructable (CVC-DDR-003, open for Amish's review): every part can now be made and fixed, which made the crawler heavier (better reach) and added $128 of parts, so R12 is $124 over its $910 value-engineering target. The prototype build plan is CVC-BLD-001 (`docs/05-build-plan.md`); open decisions are in CVC-DEC-001 (`docs/06-design-decisions.md`). All numbers are calculated estimates, not measurements.
 
 ![Hero render](../media/hero.png)
 
@@ -86,7 +90,7 @@ Numbers match the exploded view (Figure 3) and `bom/bom.csv`.
 
 The parametric build123d model is `cad/src/model.py` (STEP and STL in `cad/step/` and `cad/stl/`), and the general arrangement is drawing CVC-DWG-001 Rev P3 (`cad/drawings/CVC-DWG-001.pdf`).
 
-## Key numbers (from CVC-CAL-001 v0.4)
+## Key numbers (from CVC-CAL-001 v0.5)
 
 This section summarizes the TRL 3 calculation note, CVC-CAL-001 (`docs/04-calcs/01-sizing.md`); every value is printed by `docs/04-calcs/sizing.py`. The design case is a straight 600 mm corrugated steel culvert, 50 m long, on a 5 % slope, with a wet silt invert and 150 mm of water at 0.5 m/s.
 
@@ -147,7 +151,7 @@ The longer boom puts the cone mirror about 300 mm ahead of the tracks, which mat
 | Crawler (items 1 to 8, 14, 15) | $481 | Bezel, side plates and other parts added for construction (CVC-DDR-003) |
 | Tether, reel and surface kit (items 9 to 12) | $513 | Reel frame, bearings, counter reader, box chassis |
 | Hardware and consumables (item 13) | $40 | |
-| **Total** | **$1,034** | R12 ($910) **not met**, $124 over; budget proposed, awaiting Amish |
+| **Total** | **$1,034** | R12: **over the value-engineering target by $124** (target $910) |
 
 The laptop is excluded.
 
@@ -161,11 +165,11 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - **Laser ring ahead of a fixed fisheye camera,** Class 2, 520 nm, rather than structured light, stereo or a pan-tilt head. Decided by Amish, 2026-09-25: go with recommendation.
 - **Processing on the laptop.** The Pi streams video and sensor data; ring extraction and reports run on the operator's laptop. Decided by Amish, 2026-09-25: go with recommendation.
 - **Pipe range 300 to 900 mm.** Kept, with the 900 mm case checked at TRL 3 (R5 not met at 900 mm). Decided by Amish, 2026-09-25: go with recommendation.
-- **Budget $900.** Decided by Amish, 2026-09-25: go with recommendation. Superseded: budget set to $910 to cover the priced BOM, decided by Amish, 2026-09-26 (CVC-DDR-002).
+- **Value-engineering target $900.** Decided by Amish, 2026-09-25: go with recommendation. Superseded: target set to $910 to match the priced BOM, decided by Amish, 2026-09-26 (CVC-DDR-002).
 - **Removable laser boom.** Proposed, awaiting Amish (no recommendation was made at TRL 2).
 - **Heavier ballast plate for reach (R2).** 230 x 80 x 14 mm steel, 2.13 kg (was 1.67 kg), plus the operating guidance to enter flooded pipes from the upstream end. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). Measuring submerged track friction is TRL 4 work, on hold.
 - **Ring plane 300 mm ahead of the camera (R5).** Was 200 mm; the boom is 100 mm longer. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002).
-- **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is covered by the $910 budget Amish approved on 2026-09-26 (CVC-DDR-002).
+- **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is within the $910 value-engineering target Amish set on 2026-09-26 (CVC-DDR-002).
 - **Design for construction.** On 2026-09-30, under Amish's instruction to make the design physically buildable, every part was given a way to be made and fixed (CVC-DDR-003): hull rim and drive pads, side plates, bezel, boom fin, laser window, ballast plate resized, eye bolt, reel frame and box chassis. Open for his review; listed in the design decisions register.
 - **Camera at 50 frames per second with a circular fisheye.** A TRL 3 engineering choice so that video (R4) and profiling (R5) are both met from one camera; recorded in CVC-CAL-001.
 

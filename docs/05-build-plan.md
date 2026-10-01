@@ -3,9 +3,9 @@ doc_id: CVC-BLD-001
 title: CulvertCrawl prototype build plan
 project: CulvertCrawl
 doc_type: Build plan
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-09-30'
+date: '2026-10-01'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,10 @@ revisions:
     date: '2026-09-30'
     author: Amish Chadha
     change: First build plan, with pictures by component and step; design made constructable (CVC-DDR-003)
+  - version: "0.2"
+    date: '2026-10-01'
+    author: Amish Chadha
+    change: Budget treated as a value-engineering target; cross-references updated
 ---
 
 # CulvertCrawl prototype build plan
@@ -29,7 +33,7 @@ revisions:
 
 *Figure 2. The surface kit: the tether reel (1 to 13) and the surface control box (14 to 20).*
 
-The prototype is a small tracked crawler, 611 mm long, 170 mm wide and 106 mm high, on a 60 m tether, with a hand-wound tether reel and a surface control box. The crawler is a sealed aluminium box on a steel skid plate, driven by two worm gear motors through rubber tracks; a fisheye camera looks forward through an acrylic dome, ringed by eight LEDs, and a laser at the end of a clear boom throws a ring of light onto the pipe wall 300 mm ahead. The box at the surface holds the battery, the 48 V supply, the fuses and the emergency stop. Most of the structure is made: the hull and lid are machined from aluminium block and plate, the ballast plate is cut and drilled from steel bar, the side plates, tray, brackets, reel frames and box panel are cut and drilled from sheet and bar, the boom, fin and window are cut from clear acrylic, the reel drum and flanges are cut from plastic pipe and sheet, and two small parts are 3D printed. Everything else (motors, tracks, camera, electronics, tether, slip ring, case, battery) is bought and fitted. The parts cost about $1,034 from the bill of materials.
+The prototype is a small tracked crawler, 611 mm long, 170 mm wide and 106 mm high, on a 60 m tether, with a hand-wound tether reel and a surface control box. The crawler is a sealed aluminium box on a steel skid plate, driven by two worm gear motors through rubber tracks; a fisheye camera looks forward through an acrylic dome, ringed by eight LEDs, and a laser at the end of a clear boom throws a ring of light onto the pipe wall 300 mm ahead. The box at the surface holds the battery, the 48 V supply, the fuses and the emergency stop. Most of the structure is made: the hull and lid are machined from aluminium block and plate, the ballast plate is cut and drilled from steel bar, the side plates, tray, brackets, reel frames and box panel are cut and drilled from sheet and bar, the boom, fin and window are cut from clear acrylic, the reel drum and flanges are cut from plastic pipe and sheet, and two small parts are 3D printed. Everything else (motors, tracks, camera, electronics, tether, slip ring, case, battery) is bought and fitted. The parts cost about $1,034 from the bill of materials, against a value-engineering target of $910.
 
 Left and right are as seen from behind the crawler, looking the way it drives. Heights on the crawler are up from the track contact line (the flat ground the tracks stand on) unless a step says otherwise. Sizes are in millimetres; workshop tolerance is 0.5 mm unless a step says otherwise.
 
@@ -713,7 +717,7 @@ Stop at each point. Carry on only when everything listed is true.
 - Model and constructability checks: `cad/src/model.py` (`python cad/src/model.py --check`, 94 checks); STEP and STL exports in `cad/step/` and `cad/stl/`.
 - Pictures: `cad/src/build_plan_media.py`, using `.kit/build_views.py`; written to `docs/05-build-plan/` and `cad/drawings/CVC-DWG-101` to `CVC-DWG-119`.
 - General arrangement: `cad/drawings/CVC-DWG-001.pdf`, Rev P3.
-- Calculations: `docs/04-calcs/01-sizing.md` (CVC-CAL-001 v0.4) and `docs/04-calcs/sizing.py`; masses from model volumes, reach, recovery pull, fin shadow and profiling error.
+- Calculations: `docs/04-calcs/01-sizing.md` (CVC-CAL-001 v0.5) and `docs/04-calcs/sizing.py`; masses from model volumes, reach, recovery pull, fin shadow and profiling error.
 - Bill of materials: `bom/bom.csv` (15 lines).
 - Decisions: `docs/decisions/0003-design-for-construction.md` (CVC-DDR-003), with CVC-DDR-001 and CVC-DDR-002; open items in `docs/06-design-decisions.md` (CVC-DEC-001).
-- Requirements: `docs/03-requirements.md` (CVC-REQ-001 v0.6).
+- Requirements: `docs/03-requirements.md` (CVC-REQ-001 v0.7).

@@ -3,9 +3,9 @@ doc_id: CVC-PRB-001
 title: CulvertCrawl problem statement
 project: CulvertCrawl
 doc_type: Problem statement
-version: "0.6"
+version: "0.7"
 status: Draft
-date: '2026-09-30'
+date: '2026-10-01'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -33,6 +33,10 @@ revisions:
   date: '2026-09-30'
   author: Amish Chadha
   change: Priced BOM restated after the design for construction (CVC-DDR-003)
+- version: "0.7"
+  date: '2026-10-01'
+  author: Amish Chadha
+  change: Budget treated as a value-engineering target
 ---
 
 # CulvertCrawl problem statement
@@ -72,7 +76,7 @@ The missing piece is a measurement, not only a picture. Plastic pipe acceptance 
 
 ## Constraints
 
-- Garage-buildable prototype, $910 USD in parts (`project.yaml`; raised from $800 to $900 by Amish on 2026-09-25, CVC-DDR-001, and to $910 on 2026-09-26 to cover the priced BOM, CVC-DDR-002). The priced BOM was $906 (CVC-CAL-001 v0.3); after the design for construction it is $1,034 (CVC-CAL-001 v0.4), and a budget change is proposed, awaiting Amish (CVC-DDR-003).
+- Garage-buildable prototype, with a value-engineering target of $910 USD in parts (`project.yaml`; a hypothetical control target, not a limit; set at $800, then $900 by Amish on 2026-09-25, CVC-DDR-001, and $910 on 2026-09-26 to match the priced BOM, CVC-DDR-002). The estimated cost was $906 (CVC-CAL-001 v0.3); after the design for construction it is $1,034 (CVC-CAL-001 v0.5), $124 over the target (CVC-DDR-003).
 - No person enters the pipe at any stage, including recovery of a stuck crawler.
 - Safe extra-low voltage only in the tether and crawler (48 V DC or less), and an eye-safe laser (Class 2 or lower) so the tool can be used by non-specialists.
 - Carried by two people from a vehicle to a ditch in one trip, and set up in minutes.

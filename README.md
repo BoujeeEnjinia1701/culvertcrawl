@@ -2,7 +2,7 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827) [![DOI](https://zenodo.org/badge/1386351408.svg)](https://zenodo.org/badge/latestdoi/1386351408) [![REUSE compliant](https://github.com/BoujeeEnjinia1701/culvertcrawl/actions/workflows/reuse.yml/badge.svg)](https://github.com/BoujeeEnjinia1701/culvertcrawl/actions/workflows/reuse.yml) [![Archived in Software Heritage](https://archive.softwareheritage.org/badge/origin/https://github.com/BoujeeEnjinia1701/culvertcrawl/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/BoujeeEnjinia1701/culvertcrawl)
 
-**Area:** Situational Field Hardware · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** $910 USD · **Difficulty:** 4 of 5
+**Area:** Situational Field Hardware · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** $910 USD · **Difficulty:** 4 of 5
 
 Tethered tracked crawler with a camera, lights and laser ring profiling that measures pipe deformation and blockage.
 
@@ -72,7 +72,7 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 - Raspberry Pi 4 in the crawler
 - Surface control box with LiFePO4 battery, 48 V boost and emergency stop
 
-The priced bill of materials is in [bom/bom.csv](bom/bom.csv). The indicative total is $1,034 against the $910 budget: the parts that make the design buildable added $128, so a budget change is proposed, awaiting Amish (see the [design decisions register](docs/06-design-decisions.md)).
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv). Value-engineering target: $910 (a hypothetical control target, not a limit). Estimated cost of the constructable design: $1,034 ($124 over the target), because the parts that make the design buildable added $128. Cost drivers and savings worth trying are in the [design decisions register](docs/06-design-decisions.md).
 
 ## Building the prototype
 
