@@ -3,9 +3,9 @@ doc_id: CVC-PRC-001
 title: CulvertCrawl design precis
 project: CulvertCrawl
 doc_type: Design precis
-version: "0.7"
+version: "0.8"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -37,6 +37,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Budget treated as a value-engineering target
+- version: "0.8"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Decisions of 2026-10-02 (CVC-DEC-001): design for construction accepted; boom on two bolts for the prototype; output order (deflection report first)'
 ---
 
 # CulvertCrawl design precis
@@ -73,7 +77,7 @@ Numbers match the exploded view (Figure 3) and `bom/bom.csv`.
 | 4 | Electronics stack | Raspberry Pi 4 Model B 2 GB, dual motor driver, 48 to 12 V and 12 to 5 V converters, IMU, leak sensor | Pi 4 chosen for its hardware H.264 encoder |
 | 5 | Fisheye camera and dome port | 12 MP IMX708 module with M12 mount at 2304 x 1296 and 50 fps; 180 degree circular fisheye with the image circle inside the sensor height; 60 mm acrylic dome centered on the lens | Dome keeps the wide field of view if the port is wet |
 | 6 | LED ring light | 8 x 1 W high-CRI white LEDs, about 800 lm (estimate), dimmable, potted in a machined front bezel that also clamps the dome | Dimmed on laser frames |
-| 7 | Laser ring projector | Class 2 (1 mW or less) 520 nm diode, 90 degree conical mirror behind a clear window, ring 300 mm ahead of the lens (200 mm before CVC-DDR-002); clear boom on a clear fin bolted to the ballast plate | Removable boom for tight or bent pipes: proposed, awaiting Amish |
+| 7 | Laser ring projector | Class 2 (1 mW or less) 520 nm diode, 90 degree conical mirror behind a clear window, ring 300 mm ahead of the lens (200 mm before CVC-DDR-002); clear boom on a clear fin bolted to the ballast plate | Held by two M3 bolts at the fin bracket for the prototype; a tool-free clamp is decided after the first pipe trials (decided 2026-10-02) |
 | 8 | Ballast skid plate | Steel 255 x 88 x 14 mm, about 2.45 kg, square nose, 8 mm above the track contact line; carries the side plates, fin bracket and the tether's eye bolt (230 x 80 x 14 mm with a lip before CVC-DDR-003) | Raises traction and protects the hull; enlarged for R2 (CVC-DDR-002) |
 | 9 | Tether | 60 m hybrid: 2 twisted pairs plus 2 x 0.75 mm² power, aramid member, PU jacket about 7 mm, about 55 g/m (estimate) | Also the recovery line |
 | 10 | Tether reel | 320 mm flanged reel, A-frame, crank and brake, Ethernet-rated slip ring, payout encoder wheel | Payout counter gives distance |
@@ -166,11 +170,12 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - **Processing on the laptop.** The Pi streams video and sensor data; ring extraction and reports run on the operator's laptop. Decided by Amish, 2026-09-25: go with recommendation.
 - **Pipe range 300 to 900 mm.** Kept, with the 900 mm case checked at TRL 3 (R5 not met at 900 mm). Decided by Amish, 2026-09-25: go with recommendation.
 - **Value-engineering target $900.** Decided by Amish, 2026-09-25: go with recommendation. Superseded: target set to $910 to match the priced BOM, decided by Amish, 2026-09-26 (CVC-DDR-002).
-- **Removable laser boom.** Proposed, awaiting Amish (no recommendation was made at TRL 2).
+- **Removable laser boom.** Held by two M3 bolts at the fin bracket for the prototype, so it comes off for repair; a tool-free clamp is decided after the first pipe trials. Decided by Amish, 2026-10-02 (CVC-DEC-001).
+- **Output order.** The deflection report comes first; observations are logged in NASSCO PACP vocabulary second, and FHWA condition ratings come later. Decided by Amish, 2026-10-02 (CVC-DEC-001).
 - **Heavier ballast plate for reach (R2).** 230 x 80 x 14 mm steel, 2.13 kg (was 1.67 kg), plus the operating guidance to enter flooded pipes from the upstream end. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). Measuring submerged track friction is TRL 4 work, on hold.
 - **Ring plane 300 mm ahead of the camera (R5).** Was 200 mm; the boom is 100 mm longer. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002).
 - **Cost at $901.** The $1 overrun at CVC-CAL-001 v0.1 is accepted as within pricing uncertainty, to revisit when real quotes exist. Decided by Amish, 2026-09-25: go with recommendation (CVC-DDR-002). The $5 added by the two changes above is within the $910 value-engineering target Amish set on 2026-09-26 (CVC-DDR-002).
-- **Design for construction.** On 2026-09-30, under Amish's instruction to make the design physically buildable, every part was given a way to be made and fixed (CVC-DDR-003): hull rim and drive pads, side plates, bezel, boom fin, laser window, ballast plate resized, eye bolt, reel frame and box chassis. Open for his review; listed in the design decisions register.
+- **Design for construction.** On 2026-09-30, under Amish's instruction to make the design physically buildable, every part was given a way to be made and fixed (CVC-DDR-003): hull rim and drive pads, side plates, bezel, boom fin, laser window, ballast plate resized, eye bolt, reel frame and box chassis. Accepted by Amish, 2026-10-02 (CVC-DDR-003).
 - **Camera at 50 frames per second with a circular fisheye.** A TRL 3 engineering choice so that video (R4) and profiling (R5) are both met from one camera; recorded in CVC-CAL-001.
 
 ## Safety
@@ -192,8 +197,7 @@ Amish decided items 1 to 8 of the TRL 2 review on 2026-09-25 by accepting the re
 - Will double lip seals on the drive shafts hold IP68, or is a magnetic coupling or a sealed motor pod needed?
 - Is a Class 2 laser bright enough near a sunlit mouth or on a reflective wall, or does the camera need a narrowband filter?
 - Can a Pi 4 capture at 50 frames per second and run the H.264 and JPEG encoders at once?
-- Should the laser boom be removable for tight or bent pipes, now that it overhangs the tracks by about 300 mm? It now comes off with two bolts for repair; whether it should be quick-release in the field is in the design decisions register.
-- Which outputs do users need first: a PACP-style observation log, FHWA condition ratings, or a deflection report? Proposed, awaiting Amish.
+- Should the laser boom be quick-release for tight or bent pipes? It comes off with two bolts for the prototype (decided 2026-10-02); a tool-free clamp is decided after the first pipe trials.
 
 ## References
 

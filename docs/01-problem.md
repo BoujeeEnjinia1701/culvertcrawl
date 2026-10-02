@@ -3,9 +3,9 @@ doc_id: CVC-PRB-001
 title: CulvertCrawl problem statement
 project: CulvertCrawl
 doc_type: Problem statement
-version: "0.7"
+version: "0.8"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -37,6 +37,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Budget treated as a value-engineering target
+- version: "0.8"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Open questions on the first partner and the output order answered by the decisions of 2026-10-02 (CVC-DEC-001)'
 ---
 
 # CulvertCrawl problem statement
@@ -103,11 +107,11 @@ Sources were checked online on 2026-09-25 where possible: the OSHA 1910.146 titl
 
 ## Open questions
 
-- Who is the first user group for field trials (a county road department, a watershed group or a university transportation program)? Proposed, awaiting Amish.
+- Who is the first user group for field trials (a county road department, a watershed group or a university transportation program)? Decided 2026-10-02 (CVC-DEC-001): a county road department, with a university transportation program as backup; the first candidate to approach for the backup is the Texas A&M Transportation Institute.
 - The pipe range stays 300 to 900 mm (decided by Amish, 2026-09-25). With the ring plane moved to 300 mm ahead (CVC-DDR-002), CVC-CAL-001 v0.2 shows R5 met at 900 mm with a thin margin (0.97 %); users should say how often 900 mm pipes need an acceptance-grade number.
 - What reach is needed? 50 m is assumed from typical two-lane and four-lane road crossings; to validate with users.
 - Is an acceptance-grade deflection number (for new plastic pipe) needed, or is condition screening enough? This sets the profiling accuracy requirement.
-- Should the tool produce a PACP-style report, the FHWA condition ratings, or both? Proposed, awaiting Amish.
+- Should the tool produce a PACP-style report, the FHWA condition ratings, or both? Decided 2026-10-02 (CVC-DEC-001): the deflection report first, observations in NASSCO PACP vocabulary second, FHWA condition ratings later.
 - From which end do crews usually enter a culvert? CVC-CAL-001 v0.2 shows reach depends strongly on direction (52 m uphill against flow, more than 90 m downhill); entering flooded pipes from the upstream end is now operating guidance (CVC-DDR-002).
 
 ## User research and co-design

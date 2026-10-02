@@ -3,9 +3,9 @@ doc_id: CVC-DDR-001
 title: CulvertCrawl TRL 2 review decisions
 project: CulvertCrawl
 doc_type: Design decision record
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-09-25'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,12 +17,16 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Items 9 to 11 decided by Amish on 2026-10-02 (CVC-DEC-001)'
 ---
 
 # 0001: TRL 2 review decisions
 
 - **Date:** 2026-09-25
-- **Status:** accepted (items 1 to 8); items 9 to 11 remain proposed, awaiting Amish
+- **Status:** accepted (items 1 to 8); items 9 to 11 decided by Amish on 2026-10-02 (CVC-DEC-001)
 
 ## Context
 
@@ -56,13 +60,13 @@ Notes on the portfolio-wide approvals from the same instruction:
 
 ### Items that remain open
 
-These had no recommendation to accept and stay **Proposed, awaiting Amish**:
+These had no recommendation to accept and stayed open. Recommendations were written for them in the design decisions register (CVC-DEC-001), and Amish approved them on 2026-10-02 ("i approve your recommendations for all 555 open decisions."):
 
-9. **Output format first:** a PACP-style observation log, FHWA condition ratings or a deflection report. No preference was stated.
-10. **First partner user group** for field trials (county road department, watershed group or university transportation program). Not named.
-11. **Removable laser boom** for tight or bent pipes. Marked "proposed" in CVC-PRC-001 v0.2 without a recommendation.
+9. **Output format first:** a PACP-style observation log, FHWA condition ratings or a deflection report. No preference was stated. Decided 2026-10-02: the deflection report first, observations in NASSCO PACP vocabulary second, FHWA condition ratings later.
+10. **First partner user group** for field trials (county road department, watershed group or university transportation program). Not named. Decided 2026-10-02: a county road department, with a university transportation program as backup (first candidate to approach for the backup: the Texas A&M Transportation Institute).
+11. **Removable laser boom** for tight or bent pipes. Marked "proposed" in CVC-PRC-001 v0.2 without a recommendation. Decided 2026-10-02: two bolts at the fin bracket for the prototype; a tool-free clamp to be decided after the first pipe trials (CVC-DDR-003, A2).
 
-The new proposals from the TRL 3 calculations (R2 reach, R5 at 900 mm and R12 cost) were decided by Amish on 2026-09-25 by accepting the recommendations; see CVC-DDR-002 (`docs/decisions/0002-recommendations-accepted.md`). Items 9 to 11 had no recommendation and stay open.
+The new proposals from the TRL 3 calculations (R2 reach, R5 at 900 mm and R12 cost) were decided by Amish on 2026-09-25 by accepting the recommendations; see CVC-DDR-002 (`docs/decisions/0002-recommendations-accepted.md`). Items 9 to 11 had no recommendation then; they were decided on 2026-10-02 as above.
 
 ## Consequences
 

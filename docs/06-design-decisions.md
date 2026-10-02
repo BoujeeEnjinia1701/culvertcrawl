@@ -3,9 +3,9 @@ doc_id: CVC-DEC-001
 title: CulvertCrawl design decisions register
 project: CulvertCrawl
 doc_type: Design decisions register
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,6 +17,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Budget treated as a value-engineering target
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Amish approved the recommendations for all seven open decisions on 2026-10-02 (CVC-DDR-003 accepted); moved to decisions made'
 ---
 
 # CulvertCrawl design decisions register
@@ -25,15 +29,7 @@ Every design decision still to be made, and every decision made, in one place. E
 
 ## Open decisions
 
-| # | Decision needed | Options | Recommendation | Affects in the build | Source |
-| --- | --- | --- | --- | --- | --- |
-| 1 | Accept the design-for-construction changes P1 to P14 | Accept all; accept some and revisit others | Accept all | The whole build plan follows them | CVC-DDR-003, Table 1 |
-| 2 | Removable laser boom for tight or bent pipes (it overhangs the tracks by about 300 mm) | (a) two bolts at the fin bracket, as modelled; (b) a tool-free clamp | (a) for the prototype; decide (b) after the first pipe trials | Fin bracket (build plan section 3.9) | CVC-DDR-001 item 11; CVC-DDR-002 item 6; CVC-DDR-003, A2 |
-| 3 | Accept the fin's shadow at the invert (6.4 % of the ring in 300 mm pipe) | (a) accept; (b) move the fin off the vertical | (a) | Fin and bracket | CVC-DDR-003, A3 |
-| 4 | Accept the 0.86 kg heavier crawler | (a) accept; (b) thin the ballast plate to 12 mm | (a) | Ballast plate | CVC-DDR-003, A4 |
-| 5 | Which output users need first: a PACP-style observation log, FHWA condition ratings or a deflection report | Any one of the three first | None made | Software only; not part of the TRL 3 build | CVC-DDR-001 item 9; CVC-DDR-002 item 4 |
-| 6 | First partner user group for field trials | County road department, watershed group or university transportation program | None made | Not part of the TRL 3 build | CVC-DDR-001 item 10; CVC-DDR-002 item 5 |
-| 7 | Appearance model differences from `model.py` (lid status light, render layout of the control case) | Keep for the renders only, or add to the model | Status light: renders only; case position: render layout only | None | Review note, 2026-09-26, items 3 and 5 |
+None. All open decisions were decided on 2026-10-02.
 
 ## To confirm when parts are bought
 
@@ -64,5 +60,12 @@ Savings worth trying: a bought cable reel, a printed bezel and a smaller case, t
 | 2026-09-25 | TRL 2 review items 1 to 8: budget $900, pipe range 300 to 900 mm, 12.8 V LiFePO4 surface battery, tracks, 48 V surface power, Class 2 laser ring and fisheye camera, processing on the laptop, pitch unchanged | Amish: "proceed with all of your recommendations across all batches. Make sure we don't proceed to TRL 4 on any of them." | CVC-DDR-001 |
 | 2026-09-25 | Heavier ballast plate for reach (R2), with upstream entry in flooded pipes as operating guidance; ring plane moved to 300 mm ahead (R5); the $1 overrun accepted | Amish: "i accept all your recommendations, go with them across all repos." | CVC-DDR-002 |
 | 2026-09-26 | Value-engineering target set to $910 to match the then priced BOM ($906) | Amish: "i approve all the budget items." | CVC-DDR-002 v0.2 |
-| 2026-09-30 | Make the design physically buildable while drawing the build plan; changes recorded in CVC-DDR-003 and open for review (open decision 1) | Amish: "If you are realising that the design cannot be built as per concept - fix the design assumptions to match and be physically feasible as you draw the illustrations." | CVC-DDR-003 |
+| 2026-09-30 | Make the design physically buildable while drawing the build plan; changes recorded in CVC-DDR-003 (accepted on 2026-10-02, below) | Amish: "If you are realising that the design cannot be built as per concept - fix the design assumptions to match and be physically feasible as you draw the illustrations." | CVC-DDR-003 |
 | 2026-09-30 | Outstanding decisions are kept in this register, not in the build plan | Amish: "don't log outstanding decisions in this build plan - that is not the place for it. that should be in a separate design document logged and named as such" | STANDARDS section 18 |
+| 2026-10-02 | Design for construction accepted: all fourteen changes P1 to P14 and their knock-on changes, as made | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-003, Tables 1 and 2 |
+| 2026-10-02 | Laser boom held by two M3 bolts at the fin bracket for the prototype; a tool-free clamp is to be decided after the first pipe trials | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-003, A2; CVC-DDR-001 item 11; CVC-DDR-002 item 6 |
+| 2026-10-02 | The fin's shadow at the invert (6.4 % of the ring in 300 mm pipe) is accepted | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-003, A3 |
+| 2026-10-02 | The 0.86 kg heavier crawler (6.63 kg) is accepted | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-003, A4 |
+| 2026-10-02 | First output: the deflection report; second, observations logged in NASSCO PACP vocabulary; FHWA condition ratings later | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-001 item 9; CVC-DDR-002 item 4 |
+| 2026-10-02 | First partner user group for field trials: a county road department, with a university transportation program as backup; first candidate to approach for the backup: the Texas A&M Transportation Institute | Amish: "i approve your recommendations for all 555 open decisions." | CVC-DDR-001 item 10; CVC-DDR-002 item 5 |
+| 2026-10-02 | The lid status light stays in the renders only, and the control case position is render layout only; neither is added to the model | Amish: "i approve your recommendations for all 555 open decisions." | Review note, 2026-09-26, items 3 and 5 |

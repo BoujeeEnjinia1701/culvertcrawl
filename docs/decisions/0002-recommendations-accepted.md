@@ -3,9 +3,9 @@ doc_id: CVC-DDR-002
 title: CulvertCrawl recommendations accepted
 project: CulvertCrawl
 doc_type: Design decision record
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-09-26'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,12 +17,16 @@ revisions:
   date: '2026-09-26'
   author: Amish Chadha
   change: "Budget set to $910 to cover the priced BOM: decided by Amish, 2026-09-26; item 7 closed; R12 met"
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Items 4 to 6 decided by Amish on 2026-10-02 (CVC-DEC-001)'
 ---
 
 # 0002: Recommendations accepted
 
 - **Date:** 2026-09-25
-- **Status:** accepted (items 1 to 3; item 7 decided 2026-09-26); items 4 to 6 remain proposed, awaiting Amish
+- **Status:** accepted (items 1 to 3; item 7 decided 2026-09-26; items 4 to 6 decided 2026-10-02)
 
 ## Context
 
@@ -54,11 +58,11 @@ Knock-on changes, all at TRL 3:
 
 ### Items that remain open
 
-These stay **Proposed, awaiting Amish**:
+These stayed open; Amish approved the recommendations written for them in CVC-DEC-001 on 2026-10-02 ("i approve your recommendations for all 555 open decisions."):
 
-4. **Output format first** (PACP-style observation log, FHWA condition ratings or a deflection report). No recommendation was made.
-5. **First partner user group** for field trials. Not named; partners are picked per area later.
-6. **Removable laser boom** for tight or bent pipes. No recommendation was made. The question matters more now that the boom overhangs the tracks by about 300 mm.
+4. **Output format first** (PACP-style observation log, FHWA condition ratings or a deflection report). No recommendation was made. Decided 2026-10-02: the deflection report first, PACP vocabulary second, FHWA ratings later.
+5. **First partner user group** for field trials. Not named; partners are picked per area later. Decided 2026-10-02: a county road department, with a university transportation program as backup (first candidate to approach: the Texas A&M Transportation Institute).
+6. **Removable laser boom** for tight or bent pipes. No recommendation was made. The question matters more now that the boom overhangs the tracks by about 300 mm. Decided 2026-10-02: two bolts at the fin bracket for the prototype; a tool-free clamp after the first pipe trials.
 7. **New: the $5 added by items 1 and 2.** The priced BOM is now $906, $6 over the $900 budget. Decision 3 accepted only the original $1. Recommendation: accept the $906 total on the same basis (indicative prices, revisit with real quotes). `budget_usd` is not changed. Decided by Amish, 2026-09-26: see Budget, 2026-09-26.
 
 ### Budget, 2026-09-26

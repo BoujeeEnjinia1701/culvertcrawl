@@ -3,9 +3,9 @@ doc_id: CVC-DDR-003
 title: CulvertCrawl design for construction
 project: CulvertCrawl
 doc_type: Design decision record
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,12 +17,16 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Budget treated as a value-engineering target
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: 'Accepted by Amish on 2026-10-02, including the recommendations for A2 to A4'
 ---
 
 # 0003: Design for construction
 
 - **Date:** 2026-09-30
-- **Status:** Draft. The changes in Table 1 were made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review. The items in Table 3 are proposed, awaiting Amish.
+- **Status:** accepted. Amish, 2026-10-02: "i approve your recommendations for all 555 open decisions." This covers every change in Tables 1 and 2 and the recommendations for A2 to A4 in Table 3, now decided as recommended and recorded in the design decisions register (CVC-DEC-001).
 
 ## Context
 
@@ -63,7 +67,7 @@ The changes keep what CulvertCrawl does: the same 240 x 88 x 74 mm hull, the sam
 | Documents | CVC-CAL-001 v0.5, CVC-REQ-001 v0.7, CVC-PRC-001 v0.7. | Follow the model. |
 | Thermal and power | Unchanged: the same loads, tether and battery. | |
 
-*Table 3. Proposed, awaiting Amish.*
+*Table 3. Proposed, then accepted by Amish as recommended on 2026-10-02.*
 
 | # | Question | Options | Recommendation |
 | --- | --- | --- | --- |
@@ -77,4 +81,5 @@ The changes keep what CulvertCrawl does: the same 240 x 88 x 74 mm hull, the sam
 - Cost is reported against the value-engineering target: USD 910 (a hypothetical control target, not a limit) against an estimated USD 1,034 for the constructable design, USD 124 over. Savings worth trying (a bought cable reel, a printed bezel, a smaller case) are in the register.
 - Requirement status (CVC-CAL-001 v0.5): 1 over its value-engineering target (R12, cost), 2 at risk (R7, R8), 1 not verifiable at TRL 3 (R6), 9 met on paper (R1, R2, R3, R4, R5, R9, R10, R11, R13); R5 at 900 mm keeps its thin margin.
 - The photoreal renders (`media/render-*.png`), `media/card.png`, `media/social-preview.png` and the appearance model `cad/src/product_model.py` still show the concept lid lip, LED ring, bare cone and reel frame; they need updating on Amish's Mac, where Blender is.
+- With A2 to A4 accepted: the boom stays on two M3 bolts for the prototype and a tool-free clamp is decided after the first pipe trials; the fin's shadow at the invert and the 6.63 kg crawler are accepted.
 - Shaft length, gearbox face holes, the belt kit's tension at 200 mm centres, the slip ring and the case's inside size are checked when parts are bought (register, "To confirm").

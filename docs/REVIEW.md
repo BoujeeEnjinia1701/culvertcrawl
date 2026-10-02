@@ -296,3 +296,27 @@ No change to the safety case. The recovery pull now goes to an eye bolt in the s
 ### Recommended next step
 
 Amish reviews CVC-DDR-003 and the register (including its Value engineering section). TRL 4 remains on hold; `trl` and `trl_target` stay at 3.
+
+## Session 2026-10-02: open-decision recommendations approved
+
+Amish, 2026-10-02: "i approve your recommendations for all 555 open decisions." This approves the recommendation for every open decision in the design decisions register. 7 decisions were recorded: each moved to Decisions made, dated 2026-10-02, with the approved recommendation and its record. trl stays 3; no build or test work was done, and the CAD model, BOM quantities and prices, and pictures were not changed.
+
+### Documents changed
+
+- `docs/06-design-decisions.md` (CVC-DEC-001 v0.3): the seven open decisions moved to Decisions made; Open decisions now reads none
+- `docs/decisions/0003-design-for-construction.md` (CVC-DDR-003 v0.3): status accepted with Amish's words (Tables 1 and 2, A2 to A4); Table 3 marked accepted as recommended; consequence added
+- `docs/decisions/0001-trl2-review-decisions.md` (CVC-DDR-001 v0.3): items 9 to 11 (output order, first partner, removable boom) decided
+- `docs/decisions/0002-recommendations-accepted.md` (CVC-DDR-002 v0.3): items 4 to 6 decided
+- `docs/02-concept.md` (CVC-PRC-001 v0.8): removable boom and output order stated as decided; design for construction accepted; answered open questions removed or updated
+- `docs/01-problem.md` (CVC-PRB-001 v0.8): open questions on the first partner and the output order answered
+- `README.md`: concept paragraph: deflection report first, PACP vocabulary second, FHWA ratings later
+- PDFs regenerated with `python3 .kit/render.py`; superseded PDF versions removed by the render.
+
+### Follow-up actions to carry approved decisions into the design
+
+1. Decision 1 (pictures): Regenerate the photoreal renders, `media/card.png` and `media/social-preview.png` from `cad/src/product_model.py` so they show the accepted construction (hull rim and flush lid, bezel with LEDs, laser fin and window, reel frame), on Amish's Mac
+2. Decision 5 (docs): Specify the laptop software's outputs in that order: the deflection report first (R5), then the observation log in NASSCO PACP vocabulary (R13), with FHWA condition ratings later
+
+### Points found in the review
+
+- The value-engineering target ($910) was set to match the BOM before construction ($906); the $124 overrun is entirely parts added to make it buildable, so a target reset may be fairer than the savings list suggests.
