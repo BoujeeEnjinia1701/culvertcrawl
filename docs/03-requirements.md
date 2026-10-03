@@ -3,9 +3,9 @@ doc_id: CVC-REQ-001
 title: CulvertCrawl requirements
 project: CulvertCrawl
 doc_type: Requirements
-version: "0.7"
+version: "0.8"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -37,6 +37,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Budget treated as a value-engineering target
+- version: "0.8"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: Laptop software outputs specified in the decided order (R5 deflection report first, R13 observation log second, FHWA ratings later; CVC-DEC-001)
 ---
 
 # CulvertCrawl requirements
@@ -53,7 +57,7 @@ The **design case** used throughout is a straight 600 mm (24 in) corrugated stee
 | R2 | Reach | Drive 50 m into the design case pipe and back, pulling the tether, with 20 % traction reserve | Traction and tether drag calculation; later pull test | Met on paper (75 m wet and uphill; 64 m dry uphill; more than 100 m downhill); about 23 m if submerged track friction is 0.45 |
 | R3 | Recover without entry | Crawler can be pulled out by the tether if disabled; tether break strength 1 kN or more, at least 5 times the worst stuck-pull estimate | Tether datasheet; pull calculation | Met (about 59 N locked-track pull, factor 17; strength member on an eye bolt in the ballast plate); jamming by debris not calculable |
 | R4 | Video | 1080p video at 25 frames per second or more, live at the operator and recorded, with distance and time overlay; lighting to show the far wall of a 900 mm pipe | Camera and link budget; later image review | Met on paper (25 fps from a 50 fps stream, 53 % link use, about 370 lx); Pi 4 throughput not verifiable at TRL 3 |
-| R5 | Cross-section profile | Measure the wall profile in the ring plane and report mean diameter and ovality (deflection) to within 1 % of nominal diameter, every 0.1 m of travel or less | Error budget; later calibration pipes | Met on paper: 0.25 % at 300 mm, 0.57 % at 600 mm, 0.97 % at 900 mm (thin margin), with the boom fin's shadow; spacing 6 mm |
+| R5 | Cross-section profile | Measure the wall profile in the ring plane and report mean diameter and ovality (deflection) to within 1 % of nominal diameter, every 0.1 m of travel or less; the laptop software's first output is this deflection report (decided 2026-10-02) | Error budget; later calibration pipes | Met on paper: 0.25 % at 300 mm, 0.57 % at 600 mm, 0.97 % at 900 mm (thin margin), with the boom fin's shadow; spacing 6 mm |
 | R6 | Locate observations | Distance from the pipe mouth within 1 % or 0.2 m, whichever is larger; pitch and roll within 1 degree | Encoder and IMU datasheets | Not verifiable at TRL 3 (tether slack and wheel slip) |
 | R7 | Drive in water and silt | Operate in 150 mm of water flowing at 0.5 m/s over a silt invert; survive full submersion to 1 m for 30 min (IP68 target) | Drag and buoyancy calculation; later tank test | At risk: holds in the flow on paper; IP68 not verifiable at TRL 3 |
 | R8 | Climb | Hold position on a 5 % slope with power off; cross a 40 mm step or joint offset | Worm gear self-locking; track geometry | At risk: hold met; step limit between 35 and 53 mm |
@@ -61,7 +65,7 @@ The **design case** used throughout is a straight 600 mm (24 in) corrugated stee
 | R10 | Portable and quick | Whole kit 25 kg or less, no single case over 10 kg, carried by two people in one trip; set up from vehicle to driving in 10 min or less | Mass estimate; setup sequence | Met on mass (22.2 kg; heaviest item 7.8 kg, the reel with tether); setup time not verifiable at TRL 3 |
 | R11 | Electrical and laser safety | Tether and crawler 48 V DC nominal (below the 60 V DC extra-low-voltage limit), fused, with overcurrent cutoff and an emergency stop at the surface; laser Class 2 or lower under IEC 60825-1 | Design review | Met by design (10 A and 2 A fuses, 1.5 A cutoff) |
 | R12 | Affordable | Full kit (crawler, 60 m tether, reel, surface box) $910 or less in parts, operator laptop excluded (value-engineering target set by Amish, 2026-09-26; was $900) | Priced BOM (`bom/bom.csv`) | **Over the value-engineering target by $124** ($1,034 against $910, after the parts added for construction in CVC-DDR-003). Prices are indicative |
-| R13 | Open and repairable | Common parts; every tether and module joint pluggable; open file formats (MP4 video, CSV profiles, JSON observation log with PACP-style codes) | Design review | Met by design |
+| R13 | Open and repairable | Common parts; every tether and module joint pluggable; open file formats (MP4 video, CSV profiles, JSON observation log with PACP-style codes); the laptop software's second output is the observation log in NASSCO PACP vocabulary, and FHWA condition ratings come later (decided 2026-10-02) | Design review | Met by design |
 
 ## Requirements not met or at risk
 
@@ -77,4 +81,4 @@ The **design case** used throughout is a straight 600 mm (24 in) corrugated stee
 - Crawler mass about 6.6 kg with ballast (3.77 kg net when submerged); tether about 55 g/m; both are estimates until parts are selected.
 - 50 m reach covers most road crossings; 60 m of tether allows 10 m from the reel to the mouth.
 - A 1 % profile accuracy resolves the roughly 5 % deflection limit used for plastic pipe acceptance with a 5 to 1 margin.
-- The operator's own laptop runs the viewing and profiling software.
+- The operator's own laptop runs the viewing and profiling software. Its outputs come in this order: the deflection report (R5), then the observation log in NASSCO PACP vocabulary (R13), with FHWA condition ratings later.

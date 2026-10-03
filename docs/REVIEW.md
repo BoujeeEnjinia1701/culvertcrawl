@@ -320,3 +320,20 @@ Amish, 2026-10-02: "i approve your recommendations for all 555 open decisions." 
 ### Points found in the review
 
 - The value-engineering target ($910) was set to match the BOM before construction ($906); the $124 overrun is entirely parts added to make it buildable, so a target reset may be fairer than the savings list suggests.
+
+## Approved follow-ups carried out (2026-10-02)
+
+Amish approved all follow-up actions from the 2026-10-02 sign-off. No decision changed the geometry, BOM or calculations of this repo, so the model, BOM, calculation note and drawings are unchanged (cost USD 1,034 against the USD 910 target, mass 6.63 kg, as before).
+
+### Follow-ups
+
+1. Decision 1 (renders): done in part. The appearance model (`cad/src/product_model.py`) already follows the accepted construction with every main dimension taken from `cad/src/model.py`; the render scenes were exported to `/home/claude/renders/culvertcrawl` (hero, exploded, detail, plus the jobs file). Not done: the photoreal renders, `media/card.png` and `media/social-preview.png`, which are made on Amish's Mac.
+2. Decision 5 (docs): done. `docs/03-requirements.md` (CVC-REQ-001 v0.8) now states the laptop software's outputs in order: the deflection report first (R5), the observation log in NASSCO PACP vocabulary second (R13), FHWA condition ratings later.
+
+### Cross-repo actions
+
+None.
+
+## 2026-10-02: photoreal renders redone on the constructable design
+
+Rendered with Blender Cycles on Amish's Mac from the updated appearance model; captioned with `.kit/photo_caption.py`; `media/card.png` and `media/social-preview.png` regenerated with `.kit/cards.py`. Views: hero, exploded, detail. image_qc passes. Appearance deviations are those logged above as proposed, awaiting Amish.
